@@ -31,7 +31,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'bootstrap-sass', '~> 3.3.6'
-gem 'autoprefixer-rails'
+# gem 'autoprefixer-rails'
 
 # NOTE: The sass-rails gem is included with new Rails applications by default.
 #       Please make sure that it is not already in your Gemfile before uncommenting it.
