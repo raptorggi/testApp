@@ -1,0 +1,39 @@
+<form method="POST" action="<%= feedback_path %>">
+	<div class="input-group">
+ 		<span class="input-group-addon" id="name">Name</span>
+  		<input name="feedback[name]" type="string" class="form-control">
+	</div>
+
+	<div class="input-group">
+  		<span class="input-group-addon" id="email">E-mail</span>
+  		<input name="feedback[email]" type="string" class="form-control">
+	</div>
+
+	<div class="input-group">
+  		<span class="input-group-addon" id="phone">Phone</span>
+  		<input name="feedback[phone]" type="string" class="form-control">
+	</div>
+
+	<div class="input-group">
+  		<span class="input-group-addon" id="message">Message</span>
+  		<textarea name="feedback[message]" type="text" class="form-control"></textarea>
+	</div>
+	<button type="submit" class="btn btn-default">Submit</button>
+
+
+<table class="table table-bordered">
+  <tr>
+    <td>Name</td>
+    <td>E-mail</td>
+    <td>Phone</td>
+    <td>Message</td>
+  </tr>
+  <% @feedbacks.each do |feedback| %>  
+    <tr>
+      <td><%= feedback.name %></td>
+      <td><%= feedback.email %></td>
+      <td><%= feedback.phone %></td>
+      <td><%= feedback.message %> </td>
+    </tr> 
+  <% end %>
+</table> 
