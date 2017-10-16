@@ -1,0 +1,46 @@
+<%= content_for :title do %>
+  New Feedback
+<% end %>
+
+<h1> New Feedback</h1>
+
+<%= form_for @feedback do |f| %>
+  <% if @feedback.errors.any? %>
+    <ul>
+      <% @feedback.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <div class="form-group">
+    <%= f.text_field :name, class: "form-control", placeholder: 'Name' %>
+  </div>
+  <div class="form-group">
+    <%= f.text_field :email, class: "form-control", placeholder: 'E-mail' %>
+  </div>
+  <div class="form-group">
+    <%= f.text_field :phone, class: "form-control", placeholder: 'Phone' %>
+  </div>
+  <div class="form-group">
+    <%= f.text_field :message, class: "form-control", placeholder: 'Message' %>
+  </div>
+  <%= f.submit %>
+<% end %>
+
+<table class="table table-bordered">
+  <tr>
+    <td>Name</td>
+    <td>E-mail</td>
+    <td>Phone</td>
+    <td>Message</td>
+  </tr>
+
+  <% @feedbacks.each do |feedback| %>
+    <tr>
+      <td><%= feedback.name %></td>
+      <td><%= feedback.email %></td>
+      <td><%= feedback.phone %></td>
+      <td><%= feedback.message %></td>
+    </tr>
+  <% end %>
+</table>
