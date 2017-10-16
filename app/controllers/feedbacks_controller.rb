@@ -9,7 +9,7 @@ class FeedbacksController < ApplicationController
     if @feedback.save
       redirect_to new_feedback_path
     else
-      @feedbacks = Feedbacks.all
+      @feedbacks = Feedback.all
       render :new
     end
   end
