@@ -2,6 +2,7 @@ class FeedbacksController < ApplicationController
   def new
     @feedbacks = Feedback.all
     @feedback = Feedback.new
+    
   end
 
   def create

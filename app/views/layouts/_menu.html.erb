@@ -1,0 +1,14 @@
+ <li class="dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    pages
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+    <% @pages.each do |page| %>
+      <li>
+        <%= link_to page.slug, show_page_path(slug: page.slug), class: "dropdown-item" %>
+      </li>
+    <% end %>
+  </ul>
+</li>
+
+   
