@@ -7,12 +7,12 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     pass = Digest::SHA2.hexdigest(params[:session][:password])
-    if  user && user.password_hash == pass
+    if user && user.password_hash == pass
       session[:user_id] = user.id
       redirect_to users_path
     else
-      flash.now[:error] = 'Invalid email/password combination' 
-      render :new   
+      flash.now[:error] = 'Invalid email/password combination'
+      render :new
     end
   end
 
