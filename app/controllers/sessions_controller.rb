@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: params[:session][:email].downcase)
+    user = User.find_by(email: params[:session][:email])
     pass = Digest::SHA2.hexdigest(params[:session][:password])
     if user && user.password_hash == pass
       session[:user_id] = user.id
