@@ -4,7 +4,6 @@ describe Feedback do
   describe "presence" do
     it "name" do
       feedback = Feedback.create(email: "123", phone: "123", message: "3213")
-      #byebug
       expect(feedback.errors.any?).to be_truthy
     end
 
