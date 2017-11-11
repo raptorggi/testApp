@@ -12,7 +12,7 @@ describe FeedbacksController, type: :controller do
       expect(assigns(:feedback)).to be_a_new(Feedback)
     end
 
-    it "feedbacks be a new" do
+    it "assigns feedbacks" do
       create_list(:feedback, 5, name: '1', email: '2', phone: '3', message: '4')
       get :new
       expect(assigns(:feedbacks).count).to eq(5) 
