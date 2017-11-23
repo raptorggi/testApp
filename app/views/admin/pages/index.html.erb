@@ -1,0 +1,18 @@
+<%= content_for :title do %>
+  Pages
+<% end %>
+
+<h1> Pages </h1>
+<%= link_to "Create page", new_admin_page_path %>
+<table class="table table-bordered">
+  <% @pages.each do |p| %>
+    <tr>
+      <td><%= p.title %></td>
+      <td>
+        <%= link_to "show", admin_page_path(id: p.id) %>
+        <%= link_to "edit", edit_admin_page_path(id: p.id) %>
+        <%= link_to "delete",  admin_page_path(id: p.id), :method => :delete, data: {confirm: "Confirm delete?"} %>
+      </td>
+    </tr>
+  <% end %>
+</table>
