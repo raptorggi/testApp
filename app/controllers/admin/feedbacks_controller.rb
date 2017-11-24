@@ -1,4 +1,5 @@
 class Admin::FeedbacksController < Admin::ApplicationController
+  
   def index
     @feedbacks = Feedback.all
   end
@@ -13,8 +14,11 @@ class Admin::FeedbacksController < Admin::ApplicationController
 
   def update
     @feedback = Feedback.find(params[:id])
-    @feedback.update(feedback_params)
-    redirect_to admin_feedbacks_path
+    if @feedback.update(feedback_params)
+      redirect_to admin_feedbacks_path
+    else
+      render :edit
+    end
   end
 
   def destroy

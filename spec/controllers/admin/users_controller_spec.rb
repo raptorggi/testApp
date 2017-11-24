@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Admin::UsersController, type: :controller do
+  
   before do
     user_admin = User.create(name: "qwerty", email: "1234", password: "111111", admin: true)
     session[:user_id] = user_admin.id
@@ -11,6 +12,12 @@ RSpec.describe Admin::UsersController, type: :controller do
       get :index
       expect(response).to be_success
     end
+
+    it "return collection" do
+      users = User.all
+      get :index
+      expect(assigns(:users)).to eq(users)
+    end
   end
 
   describe '#show' do
@@ -19,6 +26,12 @@ RSpec.describe Admin::UsersController, type: :controller do
       get :show, params: {id: user.id}
       expect(response).to be_success
     end
+
+    it "return same page" do
+      user = create(:user) 
+      get :show, params: {id: user.id}
+      expect(assigns(:user)).to eq(user)   
+    end
   end
 
   describe '#edit' do
@@ -26,6 +39,12 @@ RSpec.describe Admin::UsersController, type: :controller do
       user = User.create(name: 'test', email: 'test', password: '111111')
       get :edit, params: {id: user.id}
       expect(response).to be_success
+    end
+
+    it "return same page" do
+      user = create(:user) 
+      get :edit, params: {id: user.id}
+      expect(assigns(:user)).to eq(user)   
     end
   end
 
@@ -69,7 +88,7 @@ RSpec.describe Admin::UsersController, type: :controller do
   end
 
   describe '#update' do
-    it 'updates user' do
+    it 'update user' do
       user = User.create(name: 'test', email: 'test', password: '111111')
       put :update, params: {id: user.id, user: {name: 'testqwe', email: 'test', password: '111111'}}
       user = User.find(user.id)

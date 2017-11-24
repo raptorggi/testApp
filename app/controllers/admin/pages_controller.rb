@@ -1,4 +1,5 @@
 class Admin::PagesController < Admin::ApplicationController
+  
   def index
     @pages = Page.all
   end
@@ -31,8 +32,7 @@ class Admin::PagesController < Admin::ApplicationController
 
   def update
     @page = Page.friendly.find(params[:id])
-    @page.update(page_params)
-    if @page.save
+    if @page.update(page_params)
       redirect_to admin_page_path(@page)
     else
       render :edit

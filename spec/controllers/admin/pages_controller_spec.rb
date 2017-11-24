@@ -1,15 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe Admin::PagesController, type: :controller do
+  
   before do
-    user = User.create(name: "qwerty", email: "1234", password: "111111", admin: true)
-    session[:user_id] = user.id
+    user_admin = User.create(name: "qwerty", email: "1234", password: "111111", admin: true)
+    session[:user_id] = user_admin.id
   end
 
   describe '#index' do
     it 'response successfully' do
       get :index
       expect(response).to be_success
+    end
+
+    it "return collection" do
+      pages = Page.all
+      get :index
+      expect(assigns(:pages)).to eq(pages)
     end
   end
 
@@ -19,6 +26,12 @@ RSpec.describe Admin::PagesController, type: :controller do
       get :show, params: {id: page.id}
       expect(response).to be_success
     end
+
+    it "return same page" do
+      page = create(:page) 
+      get :show, params: {id: page.id}
+      expect(assigns(:page)).to eq(page)   
+    end
   end
 
   describe '#edit' do
@@ -26,6 +39,12 @@ RSpec.describe Admin::PagesController, type: :controller do
       page = Page.create(title: 'test 1', text: 'qwerty') 
       get :edit, params: {id: page.id}
       expect(response).to be_success
+    end
+
+    it "return same page" do
+      page = create(:page) 
+      get :edit, params: {id: page.id}
+      expect(assigns(:page)).to eq(page)   
     end
   end
 
@@ -68,7 +87,7 @@ RSpec.describe Admin::PagesController, type: :controller do
   end
 
   describe '#update' do
-    it 'updates page' do
+    it 'update page' do
       page = Page.create(title: 'test 1', text: 'qwerty') 
       put :update, params: {id: page.id, page: {title: '1234', text: 'qqqwww'}}
       page = Page.find(page.id)

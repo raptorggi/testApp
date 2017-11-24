@@ -23,5 +23,5 @@
   </div>
 </div>
 
-<%= link_to "Update",  edit_admin_user_path(id: @user.id) %> 
+<%= link_to "Edit",  edit_admin_user_path(id: @user.id) %> 
 <%= link_to "Delete",  admin_user_path(id: @user.id), :method => :delete, data: {confirm: "Confirm delete?"} %> 
