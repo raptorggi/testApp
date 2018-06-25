@@ -1,0 +1,10 @@
+<%= content_for :title do %>
+  <%= @category.name %>
+<% end %>
+
+<h1> <%= @category.name %> <h1>
+<p> <%= @category.description %> </p>
+
+<% @products.each do |product| %>
+  <h3> <%=link_to product.name, category_show_product_path(params[:slug], product.slug) %> </h3>
+<% end %>
