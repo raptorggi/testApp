@@ -1,0 +1,27 @@
+<%= content_for :title do %>
+  Users
+<% end %>
+
+<h1> Users </h1>
+<%= link_to "Create new user", new_admin_user_path %>
+<table class="table table-bordered">
+  <tr>
+    <td>id</td> 
+    <td>Name</td>
+    <td>E-mail</td>
+    <td>Admin</td>
+  </tr>
+  <% @users.each do |f| %>
+    <tr>
+      <td><%= f.id %></td>
+      <td><%= f.name %></td>
+      <td><%= f.email %></td>
+      <td><%= f.admin %></td>
+      <td>
+        <%= link_to "show", admin_user_path(id: f.id) %>
+        <%= link_to "edit", edit_admin_user_path(id: f.id) %>
+        <%= link_to "delete",  admin_user_path(id: f.id), :method => :delete, data: {confirm: "Confirm delete?"} %> 
+      </td>
+    </tr>
+  <% end %>
+</table>

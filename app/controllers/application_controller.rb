@@ -2,16 +2,27 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
   before_action do
     @pages = Page.all
+    logged_in?
   end
 
-  private 
+  protected
   def logged_in?
-    @user ||= User.find(session[:user_id]) if session[:user_id]
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   def authentificate
     head 403 unless logged_in?
   end
 
+  def admin?
+    redirect_to :index unless @current_user.admin
+  end
+
+  def current_user
+    @current_user
+  end
+
+  helper_method :current_user
+  helper_method :admin?
   helper_method :logged_in?
 end

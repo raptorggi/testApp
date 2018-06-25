@@ -1,0 +1,9 @@
+<%= content_for :title do %>
+  <%= @page.title %>
+<% end %>
+
+<h2><%= @page.title %></h2>
+<p><%= @page.text %></p>
+
+<%= link_to "Edit",  edit_admin_page_path(id: @page.id) %> 
+<%= link_to "Delete",  admin_page_path(id: @page.id), :method => :delete, data: {confirm: "Confirm delete?"} %> 

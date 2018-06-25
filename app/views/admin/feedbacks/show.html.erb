@@ -1,0 +1,33 @@
+<%= content_for :title do %>
+  <%= @feedback.name %>
+<% end %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Name</h3>
+  </div>
+  <div class="panel-body">
+    <%= @feedback.name %>
+  </div>
+  <div class="panel-heading">
+    <h3 class="panel-title">E-mail</h3>
+  </div>
+  <div class="panel-body">
+    <%= @feedback.email %>
+  </div>
+  <div class="panel-heading">
+    <h3 class="panel-title">Phone</h3>
+  </div>
+  <div class="panel-body">
+    <%= @feedback.phone %>
+  </div>
+  <div class="panel-heading">
+    <h3 class="panel-title">Message</h3>
+  </div>
+  <div class="panel-body">
+    <%= @feedback.message %>
+  </div>
+</div>
+
+<%= link_to "Edit",  edit_admin_feedback_path(id: @feedback.id) %> 
+<%= link_to "Delete",  admin_feedback_path(id: @feedback.id), :method => :delete, data: {confirm: "Confirm delete?"} %> 
