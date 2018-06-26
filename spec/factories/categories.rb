@@ -1,8 +1,6 @@
 FactoryBot.define do
   factory :category do
-    name "MyString"
+    name "cat"
     description "MyText"
-    parent_id "MyString"
-    slug "MyString"
   end
 end

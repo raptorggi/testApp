@@ -1,9 +1,7 @@
 FactoryBot.define do
   factory :product do
-    name "MyString"
+    name "product"
     description "MyText"
-    price ""
-    image "MyString"
-    slug "MyString"
+    price 15
   end
 end
