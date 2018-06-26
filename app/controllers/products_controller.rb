@@ -1,10 +1,10 @@
 class ProductsController < ApplicationController
-	def index
+  def index
     @categories = Category.root
-	end
+  end
 
   def show
-    @product = Product.find_by slug: params[:id]
+    @product = Category.find_by(slug: params[:category_slug])&.products&.find_by! slug: params[:slug]
   end
 
   def category

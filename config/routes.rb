@@ -10,14 +10,10 @@ Rails.application.routes.draw do
 
   get 'products/index' => 'products#index'
   get 'products/:slug' => 'products#category', as: :show_category
-  # get 'products/:slug/:slug' => 'products#show', as: :show_product
+  get 'products/:category_slug/:slug' => 'products#show', as: :show_product
 
   resources :users, only: [:new, :create, :index]
   resources  :sessions, only: [:new, :create, :destroy]
-
-  resources :categories, only: [] do 
-    resources :products, only: [:show], as: :show_product
-  end
 
   namespace :admin do
     resources :feedbacks, :pages, :users

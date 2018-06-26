@@ -13,17 +13,17 @@ RSpec.describe ProductsController, type: :controller do
     end
   end
 
-  product = Product.create name: 'product 1'
   category = Category.create name: 'cat 1'
+  product = category.products.create name: 'product 1'
 
   describe '#show' do
     it 'responds successfully' do
-      get :show, params: {category_id: category.slug, id: product.slug}
+      get :show, params: {category_slug: category.slug, slug: product.slug}
       expect(response).to be_success
     end
 
     it "render template" do
-      get :show, params: {category_id: category.slug, id: product.slug}
+      get :show, params: {category_slug: category.slug, slug: product.slug}
       expect(response).to render_template("show")
     end
 
