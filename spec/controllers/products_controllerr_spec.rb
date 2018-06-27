@@ -13,8 +13,8 @@ RSpec.describe ProductsController, type: :controller do
     end
   end
 
-  category = Category.create name: 'cat 1'
-  product = category.products.create name: 'product 1'
+  let(:category) {Category.create name: 'cat 1'}
+  let(:product) {category.products.create name: 'product 1'}
 
   describe '#show' do
     it 'responds successfully' do
@@ -22,9 +22,9 @@ RSpec.describe ProductsController, type: :controller do
       expect(response).to be_success
     end
 
-    it "render template" do
+    it "returns requested product" do
       get :show, params: {category_slug: category.slug, slug: product.slug}
-      expect(response).to render_template("show")
+      expect(assigns(:product).id).to eq(product.id)
     end
 
   end
@@ -35,9 +35,9 @@ RSpec.describe ProductsController, type: :controller do
       expect(response).to be_success
     end
 
-    it "render template" do
+    it "returns requested category" do
       get :category, params: {slug: category.slug}
-      expect(response).to render_template("category")
+      expect(assigns(:category).id).to eq(category.id)
     end
     
   end
