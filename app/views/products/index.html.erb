@@ -1,0 +1,11 @@
+<%= content_for :title do %>
+  Категории
+<% end %>
+
+<h1> Категории <h1>
+
+<% @categories.each do |cat| %>
+  <% create_category_list(cat) do |category| %>
+    <h2><%=link_to category.name, show_category_path(slug: category.slug) %></h2>
+  <% end %>
+<% end %>
