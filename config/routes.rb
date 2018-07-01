@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   get 'products/index' => 'products#index'
   get 'products/:slug' => 'products#category', as: :show_category
   get 'products/:category_slug/:slug' => 'products#show', as: :show_product
+  
+  post 'products/:slug/buy' => 'bucket#buy', as: :add_product_to_cart
+  get 'bucket' => 'bucket#bucket', as: :show_bucket
 
   resources :users, only: [:new, :create, :index]
   resources  :sessions, only: [:new, :create, :destroy]

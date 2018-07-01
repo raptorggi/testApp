@@ -1,0 +1,54 @@
+<%= content_for :title do %>
+  Корзина
+<% end %>
+
+<style>
+  button {
+
+  }
+</style>
+
+<h1> Корзина </h1>
+
+<table class="table table-borderless table-hover">
+  <thead>
+    <tr>
+      <th scope="col" width="5%">#</th>
+      <th scope="col" width="60%">Товар</th>
+      <th scope="col" width="15%">Цена</th>
+      <th scope="col" width="20%">Количество</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products_cookie.each_with_index do |product, i| %>
+      <tr data-cookie-product=<%= product[0] %>>
+        <th><%= i + 1 %></th>
+        <td><%= get_product(product[0]).name %></td>
+        <td data-product-price=<%= get_product(product[0]).price %> data-cookie-product=<%= product[0] %>>
+          <%= get_product(product[0]).price %>
+        </td>
+        <td>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-secondary btn-sm" data-cookie-product-minus=<%= product[0] %>> 
+              <%= image_tag "minus-2x.png", area_hidden: "true" %> 
+            </button>
+            <div id=<%= product[0] %> class="btn btn-secondary">
+              <%= product[1] %>
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm" data-cookie-product-plus=<%= product[0] %>> 
+              <%= image_tag "plus-2x.png", area_hidden: "true" %> 
+            </button> 
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="row">
+  <div class="col-sm-10" align="right"><h4 id="order" >Итог: 0 </h4></div>
+  <div class="col-sm-2">
+    <button type="button" class="btn btn-primary"> 
+      Оплатить
+    </button>
+  </div>
+</div>

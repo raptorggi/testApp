@@ -11,7 +11,65 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require turbolinks
 //= require jquery
 //= require bootstrap-sprockets
+//= require js.cookie
 //= require_tree .
+
+function make_order() {
+  var order = 0;
+  $('[data-product-price]').each (function () {
+    order += parseInt($(this).data('product-price')) * parseInt(Cookies.get($(this).data('cookie-product')));
+  });
+  $('#order').html('Итог: ' + order);
+}
+
+function update_cart(count) {
+  Cookies.set('products_count',  parseInt(Cookies.get('products_count')) + count);
+  $('#cart-button').html(Cookies.get('products_count'));
+}
+
+function show_product(product) {
+  $('#cart-message').fadeIn('slow', function(){
+    $('#cart-message').html("Вы купили " + product);
+    $('#cart-message').delay(2000).fadeOut(); 
+  });
+}
+
+$(document).ready(function(){
+  make_order();
+});
+
+$(document).ready(function() {
+  $('[data-add-to-cart]').click(function(event){
+    $.post('/products/' + $(this).data('add-to-cart') + '/buy/', function() {$('#cart-button').html(Cookies.get('products_count'));});
+    show_product($(this).data('product-name'));
+  });   
+});
+
+$(document).ready(function() {
+  $('[data-cookie-product-minus]').click(function(event){
+    Cookies.set($(this).data('cookie-product-minus'),  parseInt(Cookies.get($(this).data('cookie-product-minus'))) - 1);
+    if (Cookies.get($(this).data('cookie-product-minus')) == 0) {
+      $("[data-cookie-product='" + $(this).data('cookie-product-minus') + "']").remove();
+      Cookies.remove($(this).data('cookie-product-minus'));
+    }
+    else {
+      var id = String($(this).data('cookie-product-minus'));
+      $('#'.concat(id)).html(Cookies.get(id));
+    }
+    update_cart(-1);
+    make_order();
+  });
+});
+
+$(document).ready(function() {
+  $('[data-cookie-product-plus]').click(function(event){
+    Cookies.set($(this).data('cookie-product-plus'),  parseInt(Cookies.get($(this).data('cookie-product-plus'))) + 1);
+    var id = String($(this).data('cookie-product-plus'));
+    $('#'.concat(id)).html(Cookies.get(id));
+    update_cart(1);
+    make_order();
+  });
+});
+

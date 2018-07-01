@@ -3,6 +3,9 @@ class ApplicationController < ActionController::Base
   before_action do
     @pages = Page.all
     logged_in?
+    if !session[:products_count]
+      session[:products_count] = 0
+    end
   end
 
   protected
