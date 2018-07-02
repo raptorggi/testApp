@@ -14,22 +14,22 @@
     </tr>
   </thead>
   <tbody>
-    <% @products_cookie.each_with_index do |product, i| %>
-      <tr data-cookie-product=<%= product[0] %>>
+    <% @products.each_with_index do |product, i| %>
+      <tr data-cookie-product=<%= @cookie_products[i][0] %>>
         <th><%= i + 1 %></th>
-        <td><%= get_product(product[0]).name %></td>
-        <td data-product-price=<%= get_product(product[0]).price %> data-cookie-product=<%= product[0] %>>
-          <%= get_product(product[0]).price %>
+        <td><%= product.name %></td>
+        <td data-product-price=<%= product.price %> data-cookie-product=<%= @cookie_products[i][0] %>>
+          <%= product.price %>
         </td>
         <td>
           <div class="btn-group" role="group">
-            <button type="button" class="btn btn-secondary btn-sm" data-cookie-product-minus=<%= product[0] %>> 
+            <button type="button" class="btn btn-secondary btn-sm js-button-cart-minus" data-cookie-product=<%= @cookie_products[i][0] %>> 
               <%= image_tag "minus-2x.png", area_hidden: "true" %> 
             </button>
-            <div id=<%= product[0] %> class="btn btn-secondary">
-              <%= product[1] %>
+            <div id=<%= @cookie_products[i][0] %> class="btn btn-secondary">
+              <%= @cookie_products[i][1] %>
             </div>
-            <button type="button" class="btn btn-secondary btn-sm" data-cookie-product-plus=<%= product[0] %>> 
+            <button type="button" class="btn btn-secondary btn-sm js-button-cart-plus" data-cookie-product=<%= @cookie_products[i][0] %>> 
               <%= image_tag "plus-2x.png", area_hidden: "true" %> 
             </button> 
           </div>

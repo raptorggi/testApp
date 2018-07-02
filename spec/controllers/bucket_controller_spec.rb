@@ -5,6 +5,7 @@ RSpec.describe BucketController, type: :controller do
   let(:category) {Category.create name: 'cat 1'}
   let(:product) {category.products.create name: 'product 1'}
   let(:product2) {category.products.create name: 'product 2'}
+  COOKIE_PRODUCT_PREFIX = "cart_product_"
 
   describe '#buy' do
     it 'responds successfully' do
@@ -14,7 +15,7 @@ RSpec.describe BucketController, type: :controller do
 
     it 'add product to cookies' do
       post :buy, params: {slug: product.slug}
-      prod = "cart_product_".concat product.id.to_s
+      prod = "#{COOKIE_PRODUCT_PREFIX}#{product.id}"
       expect(cookies[prod]).to eq(1)
     end
 
@@ -37,12 +38,12 @@ RSpec.describe BucketController, type: :controller do
       expect(response).to render_template("bucket")
     end
 
-    it 'have correct products in' do
+    it 'have correct products in cart' do
       post :buy, params: {slug: product.slug}
       post :buy, params: {slug: product.slug}
       post :buy, params: {slug: product2.slug}
       get :bucket
-      expect(assigns(:products_cookie)).to eq([["cart_product_".concat(product.id.to_s), "2"], ["cart_product_".concat(product2.id.to_s), "1"]])
+      expect(assigns(:cookie_products)).to eq([["#{COOKIE_PRODUCT_PREFIX}#{product.id}", '2'], ["#{COOKIE_PRODUCT_PREFIX}#{product2.id}", '1']])
     end
   end
 

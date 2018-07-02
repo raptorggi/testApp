@@ -30,7 +30,7 @@ function update_cart(count) {
 }
 
 function show_product(product) {
-  $('#cart-message').fadeIn('slow', function(){
+  $('#cart-message').fadeIn('fast', function(){
     $('#cart-message').html(product + " добавлен в корзину");
     $('#cart-message').delay(2000).fadeOut(); 
   });
@@ -44,23 +44,23 @@ $(document).ready(function(){
     show_product($(this).data('product-name'));
   });  
 
- $('[data-cookie-product-minus]').click(function(event){
-    Cookies.set($(this).data('cookie-product-minus'),  parseInt(Cookies.get($(this).data('cookie-product-minus'))) - 1);
-    if (Cookies.get($(this).data('cookie-product-minus')) == 0) {
-      $("[data-cookie-product='" + $(this).data('cookie-product-minus') + "']").remove();
-      Cookies.remove($(this).data('cookie-product-minus'));
+ $('.js-button-cart-minus').click(function(event){
+    if (Cookies.get($(this).data('cookie-product')) == 1) {
+      $("[data-cookie-product='" + $(this).data('cookie-product') + "']").remove();
+      Cookies.remove($(this).data('cookie-product'));
     }
     else {
-      var id = String($(this).data('cookie-product-minus'));
+      Cookies.set($(this).data('cookie-product'),  parseInt(Cookies.get($(this).data('cookie-product'))) - 1);
+      var id = String($(this).data('cookie-product'));
       $('#'.concat(id)).html(Cookies.get(id));
     }
     update_cart(-1);
     make_order();
   });
 
-  $('[data-cookie-product-plus]').click(function(event){
-    Cookies.set($(this).data('cookie-product-plus'),  parseInt(Cookies.get($(this).data('cookie-product-plus'))) + 1);
-    var id = String($(this).data('cookie-product-plus'));
+  $('.js-button-cart-plus').click(function(event){
+    Cookies.set($(this).data('cookie-product'),  parseInt(Cookies.get($(this).data('cookie-product'))) + 1);
+    var id = String($(this).data('cookie-product'));
     $('#'.concat(id)).html(Cookies.get(id));
     update_cart(1);
     make_order();
