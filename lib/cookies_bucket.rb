@@ -17,14 +17,14 @@ class CookiesBucket
 
   def update_products_count
     @cookies[:products_count] = 0
-    products = @cookies.select { |prod, value| prod.include?  COOKIE_PRODUCT_PREFIX}
+    products = @cookies.select { |prod, value| prod.include?  COOKIE_PRODUCT_PREFIX }
     products.each do |product|
       @cookies[:products_count] += product[1].to_i
     end
   end
 
   def get_products_from_cookies
-    @cookies.select { |prod, value| prod.include? COOKIE_PRODUCT_PREFIX}
+    @cookies.select { |prod, value| prod.include? COOKIE_PRODUCT_PREFIX }
   end
 
   def get_products

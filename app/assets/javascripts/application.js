@@ -36,6 +36,14 @@ function show_product(product) {
   });
 }
 
+function update_cart_index() {
+  var index = 1;
+  $('.cart-index').each (function () {
+    $(this).html(index);
+    index += 1;
+  });
+}
+
 $(document).ready(function(){
   make_order();
 
@@ -48,6 +56,7 @@ $(document).ready(function(){
     if (Cookies.get($(this).data('cookie-product')) == 1) {
       $("[data-cookie-product='" + $(this).data('cookie-product') + "']").remove();
       Cookies.remove($(this).data('cookie-product'));
+      update_cart_index();
     }
     else {
       Cookies.set($(this).data('cookie-product'),  parseInt(Cookies.get($(this).data('cookie-product'))) - 1);

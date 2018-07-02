@@ -16,8 +16,8 @@
   <tbody>
     <% @products.each_with_index do |product, i| %>
       <tr data-cookie-product=<%= @cookie_products[i][0] %>>
-        <th><%= i + 1 %></th>
-        <td><%= product.name %></td>
+        <th class="cart-index"><%= i + 1 %></th>
+        <td><%=link_to product.name, show_product_path(product.category.slug, product.slug) %></td>
         <td data-product-price=<%= product.price %> data-cookie-product=<%= @cookie_products[i][0] %>>
           <%= product.price %>
         </td>
