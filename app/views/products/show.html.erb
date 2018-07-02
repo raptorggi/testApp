@@ -1,8 +1,11 @@
 <%= content_for :title do %>
   <%= @product.name %>
 <% end %>
+<h3 id="cart-message" class="badge badge-secondary"></h3>
 
-<h1> <%= @product.name %> </h1>
+<%= content_tag :h1 do %> <%= @product.name %> <% end %>
 <h3> <%= @product.description %> </h3>
 <h3> Price: <%= @product.price %> </h3>
 <%= image_tag @product.image.url(:med) %>
+<br>
+<%= button_tag "Купить", data: {product_slug: @product.slug, product_name: @product.name.to_s }, class: "btn btn-primary btn-lg" %>

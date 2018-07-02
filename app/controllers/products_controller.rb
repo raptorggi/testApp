@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
 
   def category
     @category = Category.find_by slug: params[:slug]
-    @products = Product.where category_id: @category.id
+    @products = Product.where category_id: @category.id 
   end
+
 end
