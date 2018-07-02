@@ -1,15 +1,11 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the BucketHelper. For example:
-#
-# describe BucketHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe BucketHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "get_product" do
+    let(:category) {Category.create name: 'cat 1'}
+    let(:product) {category.products.create name: 'product 1'}
+    it "should return product object" do
+      expect(get_product("cart_product_".concat product.id.to_s)).to eq(product)
+    end
+  end
 end

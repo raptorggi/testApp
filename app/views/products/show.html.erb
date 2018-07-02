@@ -8,4 +8,4 @@
 <h3> Price: <%= @product.price %> </h3>
 <%= image_tag @product.image.url(:med) %>
 <br>
-<%= button_tag "Купить", data: {add_to_cart: @product.slug}, class: "btn btn-primary btn-lg" %>
+<%= button_tag "Купить", data: {product_slug: @product.slug}, class: "btn btn-primary btn-lg" %>

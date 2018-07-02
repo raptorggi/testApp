@@ -1,12 +1,15 @@
 class BucketController < ApplicationController
   skip_before_action :verify_authenticity_token
+  def self.cookie_product_prefix
+    13
+  end
 
   def bucket
     @products_cookie = cookies.select { |prod, value| prod.include? "cart_product_"}
   end
 
   def buy
-    product = "cart_product_" + (Product.find_by slug: params[:slug]).id.to_s
+    product = "cart_product_".concat (Product.find_by slug: params[:slug]).id.to_s
     if cookies[product]
       cookies[product] = cookies[product].to_i + 1
     else
