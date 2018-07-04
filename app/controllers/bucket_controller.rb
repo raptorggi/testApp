@@ -4,6 +4,7 @@ class BucketController < ApplicationController
   def bucket
     @products = CookiesBucket.new(cookies, Product).get_products
     @cookie_products = CookiesBucket.new(cookies, Product).get_products_from_cookies
+    @products_count = CookiesBucket.new(cookies, Product).get_products_count
   end
 
   def buy
