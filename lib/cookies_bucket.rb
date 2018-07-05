@@ -1,13 +1,12 @@
 class CookiesBucket
   COOKIE_PRODUCT_PREFIX = "cart_product_"
 
-  def initialize(cookies, product)
+  def initialize(cookies)
     @cookies = cookies
-    @product = product
   end
 
   def add_product_to_cookies(slug)
-    product = "#{COOKIE_PRODUCT_PREFIX}#{(@product.find_by slug: slug).id}"
+    product = "#{COOKIE_PRODUCT_PREFIX}#{(Product.find_by slug: slug).id}"
     if @cookies[product]
       @cookies[product] = @cookies[product].to_i + 1
     else
@@ -43,7 +42,7 @@ class CookiesBucket
     products.each do |product|
       products_id.push product[0][COOKIE_PRODUCT_PREFIX.length..product[0].length - 1]
     end
-    @product.where id: products_id
+    Product.where id: products_id
   end
 
   def clear

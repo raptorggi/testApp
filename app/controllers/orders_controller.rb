@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new order_params
     if @order.save
-      CookiesBucket.new(cookies, Product).clear
+      CookiesBucket.new(cookies).clear
       redirect_to confirmed_order_path
     else
       view_data
@@ -25,9 +25,9 @@ class OrdersController < ApplicationController
   end
 
   def view_data
-    @products = CookiesBucket.new(cookies, Product).get_products
-    @cookie_products = CookiesBucket.new(cookies, Product).get_products_from_cookies
-    @products_id_count = CookiesBucket.new(cookies, Product).get_products_id_count
+    @products = CookiesBucket.new(cookies).get_products
+    @cookie_products = CookiesBucket.new(cookies).get_products_from_cookies
+    @products_id_count = CookiesBucket.new(cookies).get_products_id_count
   end
   
 end
