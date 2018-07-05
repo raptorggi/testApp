@@ -1,5 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe OrderProduct, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'association' do
+    it { should belong_to :order }
+    it { should belong_to :product }
+  end
+
+  describe 'presence' do
+    it { is_expected.to validate_presence_of :count }
+  end
+
 end

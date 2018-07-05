@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get 'bucket' => 'bucket#bucket', as: :show_bucket
 
   get 'order' => 'orders#order'
-  post 'order/create' => 'orders#create'
+  post 'order' => 'orders#create', as: :create_order
   get 'confirmed' => 'orders#confirmed', as: :confirmed_order
 
   resources :users, only: [:new, :create, :index]
