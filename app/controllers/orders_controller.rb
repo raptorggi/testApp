@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   def order
     @order = Order.new
     @order.order_products.new
-    view_data
+    @products = CookiesBucket.new(cookies).get_products_and_count
   end
 
   def create
@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
       CookiesBucket.new(cookies).clear
       redirect_to confirmed_order_path
     else
-      view_data
+      @products = CookiesBucket.new(cookies).get_products_and_count
       render :order
     end
   end
@@ -22,12 +22,6 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:name, :surname, :address, :phone, :email, order_products_attributes: [:product_id, :count])
-  end
-
-  def view_data
-    @products = CookiesBucket.new(cookies).get_products
-    @cookie_products = CookiesBucket.new(cookies).get_products_from_cookies
-    @products_id_count = CookiesBucket.new(cookies).get_products_id_count
   end
   
 end

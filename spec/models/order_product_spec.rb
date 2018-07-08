@@ -6,6 +6,10 @@ RSpec.describe OrderProduct, type: :model do
     it { should belong_to :product }
   end
 
+  describe 'responds' do
+    it { is_expected.to respond_to :order_id, :product_id, :count }
+  end
+
   describe 'presence' do
     it { is_expected.to validate_presence_of :count }
   end

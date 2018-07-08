@@ -26,14 +26,13 @@ class CookiesBucket
     @cookies.select { |prod, value| prod.include? COOKIE_PRODUCT_PREFIX }
   end
 
-  def get_products_id_count
-    products = get_products_from_cookies
-    products_id_count = {}
+  def get_products_and_count
+    products = get_products
+    products_and_count = {}
     products.each do |product|
-      prod = product[0][COOKIE_PRODUCT_PREFIX.length..product[0].length - 1]
-      products_id_count[prod] = product[1]
+      products_and_count[product] = @cookies["#{COOKIE_PRODUCT_PREFIX}#{product.id}"]
     end
-    products_id_count
+    products_and_count
   end
 
   def get_products

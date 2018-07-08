@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe OrdersController, type: :controller do
 
-  let(:category) {Category.create name: 'cat 1'}
-  let(:product) {category.products.create name: 'product 1'}
+  let(:category) { create :category }
+  let(:product) { create :product,  name: 'product'}
 
   describe '#order' do
     it 'responds successfully' do
