@@ -4,6 +4,6 @@ FactoryBot.define do
     surname "test"
     address "vdk center"
     phone "88005553535"
-    email "gg@gmail.com"
+    email "user@testapp.com"
   end
 end

@@ -4,6 +4,13 @@ RSpec.describe OrdersController, type: :controller do
 
   let(:category) { create :category }
   let(:product) { create :product,  name: 'product'}
+  let(:user) { create :user }
+  let(:user_admin) { create :user, name: 'Admin', admin: true }
+
+  before do
+    session[:user_id] = user.id
+    user_admin
+  end
 
   describe '#order' do
     it 'responds successfully' do
