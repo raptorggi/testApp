@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= @user.name %> заказал:</h1>
+
+    <table class="table table-borderless table-hover">
+      <thead>
+        <tr>
+          <th scope="col" width="5%">#</th>
+          <th scope="col" width="60%">Товар</th>
+          <th scope="col" width="15%">Цена</th>
+          <th scope="col" width="20%">Количество</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order.order_products.each_with_index do |prod, i| %>
+          <tr>
+            <th><%= i + 1 %></th>
+            <td><%=link_to prod.product.name, show_product_url(prod.product.category.slug, prod.product.slug) %></td>
+            <td ><%= prod.product.price %></td>
+            <td><%= prod.count %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </body>
+</html>
