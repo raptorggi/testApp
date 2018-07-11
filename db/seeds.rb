@@ -5,7 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create(name: "admin", email: "admin", password: "12345678", admin: true)
+User.create(name: "admin", email: "admin@testapp.com", password: "12345678", admin: true)
+User.create(name: "admin2", email: "admin2@testapp.com", password: "12345678", admin: true)
+User.create(name: "user1", email: "user1@testapp.com", password: "12345678")
+User.create(name: "user2", email: "user2@testapp.com", password: "12345678")
+User.create(name: "user3", email: "user3@testapp.com", password: "12345678")
+
 
 4.times do |i|
   Page.create(title: "Page #{i}", text: "text for Page #{i}")

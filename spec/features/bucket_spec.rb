@@ -7,7 +7,13 @@ feature 'cart', type: :feature do
   scenario 'add product', js: true do
     visit show_product_path(category_slug: category.slug, slug: product.slug)
     click_button 'Купить'
-    sleep 0.01
+    sleep 1
     expect(page.driver.cookies).to include("#{CookiesBucket::COOKIE_PRODUCT_PREFIX}#{product.id}")
+  end
+
+  scenario 'show cart page', js: true do
+    visit show_product_path(category_slug: category.slug, slug: product.slug)
+    click_button 'Cart'
+    expect(page).to have_text('Корзина')
   end
 end
