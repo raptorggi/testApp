@@ -44,12 +44,13 @@ function update_cart_index() {
   });
 }
 
-$(document).ready(function() {
+$(document).ready(function(){
   make_order();
 
   $('[data-product-slug]').click(function(event){
     $.post('/products/' + $(this).data('product-slug') + '/buy/', function() {$('#cart-button').html(Cookies.get('products_count'));});
     show_product($(this).data('product-name'));
+    console.log("test");
   });  
 
  $('.js-button-cart-minus').click(function(event){
