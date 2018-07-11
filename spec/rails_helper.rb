@@ -43,15 +43,8 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-Capybara.register_driver :selenium_chrome do |app|
-  Capybara::Selenium::Driver.new(app, :browser => :chrome)
-end
-Capybara.javascript_driver = :selenium_chrome
-
-
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
-  config.include ShowMeTheCookies, :type => :feature
   # showMeTheCookies.register_adapter(:selenium_chrome, ShowMeTheCookies::Selenium)
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
