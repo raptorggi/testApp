@@ -5,8 +5,13 @@ require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
-require 'capybara/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
+
+require 'capybara/rails'
+require 'database_cleaner'
+require 'capybara/poltergeist'
+
+Capybara.javascript_driver = :poltergeist
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -37,15 +42,8 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-Capybara.register_driver :selenium_chrome do |app|
-  Capybara::Selenium::Driver.new(app, :browser => :chrome)
-end
-Capybara.javascript_driver = :selenium_chrome
-
-
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
-  config.include ShowMeTheCookies, :type => :feature
   # showMeTheCookies.register_adapter(:selenium_chrome, ShowMeTheCookies::Selenium)
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -53,7 +51,25 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
+
+  # Clear database
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do |example|
+    DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
+    DatabaseCleaner.start
+  end
+
+  config.before(:each, type: :feature) do
+    # clear_emails
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
