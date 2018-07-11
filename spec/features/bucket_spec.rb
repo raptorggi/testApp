@@ -1,15 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe 'cart', type: :feature do
+feature 'cart', type: :feature do
   let(:category) { create :category }
-  let(:product) {create :product, category_id: category.id }
+  let(:product) { create :product, name: 'Sony Xperia XZ2 Compact DS', category_id: category.id }
  
-  scenario 'add product' do
-    pending
+  scenario 'add product', js: true do
     visit show_product_path(category_slug: category.slug, slug: product.slug)
-    # byebug
-    # page.find(:css, "button[data-product-slug='#{product.slug}']").click
     click_button 'Купить'
-    expect(get_me_the_cookies).to include("#{COOKIE_PRODUCT_PREFIX}#{product.id}")
+    sleep 0.01
+    expect(page.driver.cookies).to include("#{CookiesBucket::COOKIE_PRODUCT_PREFIX}#{product.id}")
   end
 end

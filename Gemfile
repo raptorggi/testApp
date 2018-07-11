@@ -31,7 +31,8 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem "chromedriver-helper"
-  gem "show_me_the_cookies"
+  gem 'database_cleaner'
+  gem 'poltergeist'
 end
 
 group :development do
