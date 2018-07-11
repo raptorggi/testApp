@@ -21,9 +21,3 @@
 /yarn-error.log
 
 .byebug_history
-
-# off paperclip images
-/public/system/*
-
-# off rspec examples
-spec/examples.txt
