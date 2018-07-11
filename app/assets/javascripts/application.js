@@ -44,7 +44,7 @@ function update_cart_index() {
   });
 }
 
-$(document).ready(function(){
+$(document).ready(function() {
   make_order();
 
   $('[data-product-slug]').click(function(event){

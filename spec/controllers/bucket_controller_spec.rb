@@ -1,10 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe BucketController, type: :controller do
-
-  let(:category) {Category.create name: 'cat 1'}
-  let(:product) {category.products.create name: 'product 1'}
-  let(:product2) {category.products.create name: 'product 2'}
+  let(:category) { create :category }
+  let(:product) { create :product,  name: 'product'}
+  let(:product2) { create :product, name: 'product2'}
   COOKIE_PRODUCT_PREFIX = "cart_product_"
 
   describe '#buy' do

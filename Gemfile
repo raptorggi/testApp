@@ -26,10 +26,13 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
   gem 'rails-controller-testing'
-  gem "factory_bot_rails", "~> 4.0"
+  gem "factory_bot_rails", "~> 4.10.0"
   gem 'shoulda-matchers', '~> 3.1'
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem "chromedriver-helper"
+  gem 'database_cleaner'
+  gem 'poltergeist'
 end
 
 group :development do

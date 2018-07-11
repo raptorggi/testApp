@@ -15,6 +15,10 @@ Rails.application.routes.draw do
   post 'products/:slug/buy' => 'bucket#buy', as: :add_product_to_cart
   get 'bucket' => 'bucket#bucket', as: :show_bucket
 
+  get 'order' => 'orders#order'
+  post 'order' => 'orders#create', as: :create_order
+  get 'confirmed' => 'orders#confirmed', as: :confirmed_order
+
   resources :users, only: [:new, :create, :index]
   resources  :sessions, only: [:new, :create, :destroy]
 
