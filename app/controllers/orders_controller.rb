@@ -9,8 +9,8 @@ class OrdersController < ApplicationController
     @order = Order.new order_params
     if @order.save
       CookiesBucket.new(cookies).clear
-      OrderMailer.user_order_email(session[:user_id], @order.id).deliver_now
-      OrderMailer.admin_order_email(session[:user_id], @order.id).deliver_now
+      OrderMailer.order_email_to_users(session[:user_id], @order.id).deliver_now
+      OrderMailer.order_email_to_admins(session[:user_id], @order.id).deliver_now
       redirect_to confirmed_order_path
     else
       CookiesBucket.new(cookies).get_products_and_count
