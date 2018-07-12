@@ -26,7 +26,6 @@ RSpec.describe ProductsController, type: :controller do
       get :show, params: {category_slug: category.slug, slug: product.slug}
       expect(assigns(:product).id).to eq(product.id)
     end
-
   end
 
   describe '#category' do
@@ -39,6 +38,12 @@ RSpec.describe ProductsController, type: :controller do
       get :category, params: {slug: category.slug}
       expect(assigns(:category).id).to eq(category.id)
     end
-    
+  end
+
+  describe '#show pdf' do
+    it 'responds successfully' do
+      get :show, as: 'pdf', params: {category_slug: category.slug, slug: product.slug}
+      expect(response).to be_success
+    end
   end
 end

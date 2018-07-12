@@ -12,6 +12,7 @@ class CookiesBucket
     else
       @cookies[product] = 1
     end
+    update_products_count
   end
 
   def update_products_count
