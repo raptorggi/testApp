@@ -9,6 +9,5 @@ class BucketController < ApplicationController
 
   def buy
     CookiesBucket.new(cookies).add_product_to_cookies(params[:slug])
-    CookiesBucket.new(cookies).update_products_count 
   end
 end

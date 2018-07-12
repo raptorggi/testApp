@@ -9,3 +9,6 @@
 <%= image_tag @product.image.url(:med) %>
 <br>
 <%= button_tag "Купить", data: { product_slug: @product.slug, product_name: @product.name.to_s }, class: "btn btn-primary btn-lg" %>
+<%= link_to show_product_path(@product.category.slug, @product.slug, format: 'pdf') do %>
+  <button type="button" class="btn btn-primary">PDF</button>
+<% end %>
