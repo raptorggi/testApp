@@ -1,11 +1,12 @@
 class ProductsController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
   def index
     @categories = Category.root
   end
 
   def show
-    @product = Category.find_by(slug: params[:category_slug])&.products&.find_by! slug: params[:slug]
+    @product = Product.find_by slug: params[:slug]
     respond_to do |format|
       format.html
       format.pdf do
@@ -20,4 +21,7 @@ class ProductsController < ApplicationController
     @products = Product.where category_id: @category.id 
   end
 
+  def buy
+    CookiesBucket.new(cookies).add_product_to_cookies(params[:slug])
+  end
 end

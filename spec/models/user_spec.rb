@@ -1,6 +1,11 @@
 require 'rails_helper'
 
-describe User do 
+describe User do
+  describe 'association' do
+    it { should have_many :user_carts }
+  end
+
+
   describe "validates" do
     it { is_expected.to validate_presence_of :name }
     it { is_expected.to validate_presence_of :email }

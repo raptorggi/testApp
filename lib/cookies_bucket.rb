@@ -3,6 +3,7 @@ class CookiesBucket
 
   def initialize(cookies)
     @cookies = cookies
+    @cookies[:token] = SecureRandom.uuid if !@cookies.key?('token')
   end
 
   def add_product_to_cookies(slug)
@@ -52,5 +53,9 @@ class CookiesBucket
 
   def get_products_count
     @cookies[:products_count].to_i
+  end
+
+  def get_user_token
+    @cookies[:token]
   end
 end

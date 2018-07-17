@@ -8,6 +8,7 @@ RSpec.describe OrdersController, type: :controller do
   let(:user_admin) { create :user, name: 'Admin', admin: true }
 
   before do
+    product
     session[:user_id] = user.id
     user_admin
   end
@@ -27,7 +28,7 @@ RSpec.describe OrdersController, type: :controller do
 
   describe '#create' do
     it 'redirect to confirmed page if order creation success' do
-      post :create, params: {order: {name: "qwe", surname: "1eqwe", address: "testtest", phone: "123123123111", email: "gg@gmail.com", order_product_attributes: {"0" => {product_id: product.id, count: 12}}}}
+      post :create, params: {order: {name: "qwe", surname: "1eqwe", address: "testtest", phone: "123123123111", email: "gg@gmail.com", order_products_attributes: {"0" => {product_id: product.id, count: 2}}}}
       expect(response).to redirect_to(confirmed_order_path)
     end
 
@@ -36,10 +37,22 @@ RSpec.describe OrdersController, type: :controller do
       expect(response).to render_template(:order)
     end
 
-    it 'create order' do 
+    it 'order' do 
       count = Order.count
-      post :create, params: {order: {name: "qwe", surname: "1eqwe", address: "testtest", phone: "123123123111", email: "gg@gmail.com", order_product_attributes: {"0" => {product_id: product.id, count: 12}}}}
+      post :create, params: {order: {name: "qwe", surname: "1eqwe", address: "testtest", phone: "123123123111", email: "gg@gmail.com", order_products_attributes: {"0" => {product_id: product.id, count: 2}}}}
       expect(Order.count).to eq(count + 1)
+    end
+
+    it 'add products to user_carts' do 
+      count = UserCart.count
+      post :create, params: {order: {name: "qwe", surname: "1eqwe", address: "testtest", phone: "123123123111", email: "gg@gmail.com", order_products_attributes: {"0" => {product_id: product.id, count: 2}}}}
+      expect(UserCart.count).to eq(count + 1)
+    end
+
+    it 'change reserved in products' do 
+      pending
+      post :create, params: {order: {name: "qwe", surname: "1eqwe", address: "testtest", phone: "123123123111", email: "gg@gmail.com", order_products_attributes: {"0" => {product_id: product.id, count: 2}}}}
+      expect(product.reserved).to eq(2)
     end
 
   end

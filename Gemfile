@@ -19,7 +19,9 @@ gem 'rails-ujs', '~> 0.1.0'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'friendly_id', '~> 5.1.0'
 gem "paperclip", "~> 6.0.0"
+gem 'money-rails', '~>1'
 gem 'russian', '~> 0.6.0'
+gem 'whenever', require: false
 # pdf creation
 gem 'prawn'
 gem 'responders'

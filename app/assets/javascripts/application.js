@@ -36,6 +36,13 @@ function show_product(product) {
   });
 }
 
+function show_error_message(message) {
+  $('#cart-message').fadeIn('fast', function(){
+    $('#cart-message').html(message);
+    $('#cart-message').delay(2000).fadeOut(); 
+  });
+}
+
 function update_cart_index() {
   var index = 1;
   $('.cart-index').each (function () {

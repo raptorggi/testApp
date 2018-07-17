@@ -1,13 +1,8 @@
-class BucketController < ApplicationController
-  skip_before_action :verify_authenticity_token
+class CartController < ApplicationController
 
-  def bucket
+  def cart
     @products = CookiesBucket.new(cookies).get_products
     @cookie_products = CookiesBucket.new(cookies).get_products_from_cookies
     @products_count = CookiesBucket.new(cookies).get_products_count
-  end
-
-  def buy
-    CookiesBucket.new(cookies).add_product_to_cookies(params[:slug])
   end
 end

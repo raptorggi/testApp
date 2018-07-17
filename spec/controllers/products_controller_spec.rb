@@ -14,7 +14,8 @@ RSpec.describe ProductsController, type: :controller do
   end
 
   let(:category) {Category.create name: 'cat 1'}
-  let(:product) {category.products.create name: 'product 1'}
+  let(:product) {create :product, category_id: category.id}
+  let(:product2) {create :product, category_id: category.id}
 
   describe '#show' do
     it 'responds successfully' do
@@ -44,6 +45,26 @@ RSpec.describe ProductsController, type: :controller do
     it 'responds successfully' do
       get :show, as: 'pdf', params: {category_slug: category.slug, slug: product.slug}
       expect(response).to be_success
+    end
+  end
+
+  describe '#buy' do
+    it 'responds successfully' do
+      post :buy, params: {slug: product.slug}
+      expect(response).to be_success
+    end
+
+    it 'add product to cookies' do
+      post :buy, params: {slug: product.slug}
+      prod = "#{COOKIE_PRODUCT_PREFIX}#{product.id}"
+      expect(cookies[prod]).to eq(1)
+    end
+
+    it 'have correct count products in cart' do
+      post :buy, params: {slug: product.slug}
+      post :buy, params: {slug: product.slug}
+      post :buy, params: {slug: product2.slug}
+      expect(cookies[:products_count]).to eq(3)
     end
   end
 end

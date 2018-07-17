@@ -7,8 +7,8 @@ RSpec.describe OrderMailer, type: :mailer do
   let(:user_admin) { create :user, name: 'Admin', admin: true }
   let(:order) { create :order }
   let(:order_product) { create order_id: order.id, product_id: product.id, count: 4 }
-  let(:user_mail) { OrderMailer.order_email_to_users user.id, order.id }
-  let(:admin_mail) { OrderMailer.order_email_to_admins user.id, order.id }
+  let(:user_mail) { OrderMailer.order_email_to_users user.email, order.id }
+  let(:admin_mail) { OrderMailer.order_email_to_admins user.email, order.id }
   
   before do
     user_admin
@@ -24,7 +24,7 @@ RSpec.describe OrderMailer, type: :mailer do
 
   describe '#order_email_to_admins' do
     it "renders the headers" do
-      expect(admin_mail.subject).to eq("user #{user.name} order ##{order.id}")
+      expect(admin_mail.subject).to eq("user order ##{order.id}")
       expect(admin_mail.to).to eq([user_admin.email])
       expect(admin_mail.from).to eq(["no-reply@testapp.com"])
     end

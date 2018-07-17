@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180702202531) do
+ActiveRecord::Schema.define(version: 20180712102910) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,7 +66,6 @@ ActiveRecord::Schema.define(version: 20180702202531) do
     t.bigint "category_id"
     t.string "name"
     t.text "description"
-    t.integer "price"
     t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -74,7 +73,22 @@ ActiveRecord::Schema.define(version: 20180702202531) do
     t.string "image_content_type"
     t.integer "image_file_size"
     t.datetime "image_updated_at"
+    t.integer "quantity"
+    t.integer "reserved"
+    t.integer "price", default: 0, null: false
+    t.string "price_currency", default: "RUB", null: false
     t.index ["category_id"], name: "index_products_on_category_id"
+  end
+
+  create_table "user_carts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "product_id"
+    t.string "user_token"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_user_carts_on_product_id"
+    t.index ["user_id"], name: "index_user_carts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

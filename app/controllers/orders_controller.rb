@@ -8,9 +8,15 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new order_params
     if @order.save
+      products = params[:order][:order_products_attributes]
+      user_token = CookiesBucket.new(cookies).get_user_token
+      products.each do |product|
+        prod = Product.find products[product][:product_id]
+        prod.user_carts.create! user_token: user_token, quantity: products[product][:count].to_i, user_id: session[:user_id]
+        prod.update reserved: prod.reserved + products[product][:count].to_i
+      end
       CookiesBucket.new(cookies).clear
-      OrderMailer.order_email_to_users(session[:user_id], @order.id).deliver_now
-      OrderMailer.order_email_to_admins(session[:user_id], @order.id).deliver_now
+      OrderMailer.order_email(params[:order][:email], @order.id).deliver_now
       redirect_to confirmed_order_path
     else
       CookiesBucket.new(cookies).get_products_and_count
