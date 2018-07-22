@@ -9,10 +9,9 @@ RSpec.describe Product, type: :model do
     it { have_many(:orders).through :order_products }
   end
 
-  describe "presence" do
+  describe 'presence' do
     it { is_expected.to validate_presence_of :name }
     it { is_expected.to validate_presence_of :quantity }
     it { is_expected.to validate_presence_of :reserved }
   end
-  
 end

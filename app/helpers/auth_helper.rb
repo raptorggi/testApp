@@ -1,5 +1,5 @@
 module AuthHelper
-  def encode password
+  def encode(password)
     Digest::SHA2.hexdigest password
   end
 

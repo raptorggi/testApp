@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
   def logged_in?
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
@@ -18,9 +19,7 @@ class ApplicationController < ActionController::Base
     redirect_to :index unless @current_user.admin
   end
 
-  def current_user
-    @current_user
-  end
+  attr_reader :current_user
 
   helper_method :current_user
   helper_method :admin?

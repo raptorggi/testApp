@@ -1,9 +1,9 @@
 class ProductPdf < Prawn::Document
-  require "open-uri"
+  require 'open-uri'
 
-  def initialize product, url
+  def initialize(product, url)
     super(top_margin: 40)
-    font("#{Rails.root}/app/assets/fonts/OpenSans-Regular.ttf")
+    font(Rails.root.join('app', 'assets', 'fonts', 'OpenSans-Regular.ttf'))
     @product = product
     @url = url
     product_url
@@ -12,18 +12,18 @@ class ProductPdf < Prawn::Document
     product_description
   end
 
-  def product_url 
-    text "#{@url}", size: 8, align: :right
+  def product_url
+    text @url.to_s, size: 8, align: :right
   end
 
   def product_header
     move_down 20
-    text "#{@product.name}", size: 15, align: :center
+    text @product.name.to_s, size: 15, align: :center
   end
 
-  def product_description 
+  def product_description
     move_down 20
-    text "#{@product.description}", size: 11, align: :center
+    text @product.description.to_s, size: 11, align: :center
   end
 
   def product_image

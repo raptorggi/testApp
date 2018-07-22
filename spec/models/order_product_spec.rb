@@ -13,5 +13,4 @@ RSpec.describe OrderProduct, type: :model do
   describe 'presence' do
     it { is_expected.to validate_presence_of :count }
   end
-
 end

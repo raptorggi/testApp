@@ -6,7 +6,7 @@ RSpec.describe UserCart, type: :model do
     it { should belong_to :product }
   end
 
-  describe "validates" do
+  describe 'validates' do
     it { is_expected.to validate_presence_of :product_id }
     it { is_expected.to validate_presence_of :user_token }
     it { is_expected.to validate_presence_of :quantity }

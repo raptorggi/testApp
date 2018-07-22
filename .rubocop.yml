@@ -1,0 +1,17 @@
+Style/Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Enabled: false
+
+Naming/AccessorMethodName:
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
+
+AllCops:
+  Exclude:
+    - 'spec/**/*.rb'
+    - 'db/**/*.rb'
+    - 'bin/*'

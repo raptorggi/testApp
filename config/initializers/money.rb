@@ -1,7 +1,4 @@
-# encoding : utf-8
-
 MoneyRails.configure do |config|
-
   # To set the default currency
   #
   config.default_currency = :rub
@@ -11,8 +8,7 @@ MoneyRails.configure do |config|
                            type: :integer,       # column type
                            present: true,        # column will be created
                            null: false,          # other options will be treated as column options
-                           default: 0
-                         }
+                           default: 0 }
   # Set default bank object
   #
   # Example:

@@ -24,11 +24,9 @@ class OrdersController < ApplicationController
     end
   end
 
-  def confirmed
-
-  end
+  def confirmed; end
 
   def order_params
-    params.require(:order).permit(:name, :surname, :address, :phone, :email, order_products_attributes: [:product_id, :count])
+    params.require(:order).permit(:name, :surname, :address, :phone, :email, order_products_attributes: %i[product_id count])
   end
 end
