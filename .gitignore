@@ -27,3 +27,5 @@
 
 # off rspec examples
 spec/examples.txt
+
+.env

@@ -39,6 +39,7 @@ group :development, :test do
   gem "chromedriver-helper"
   gem 'database_cleaner'
   gem 'poltergeist'
+  gem 'dotenv-rails'
 end
 
 group :development do
