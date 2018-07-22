@@ -1,8 +1,13 @@
 class CartController < ApplicationController
-
   def cart
-    @products = CookiesBucket.new(cookies).get_products
-    @cookie_products = CookiesBucket.new(cookies).get_products_from_cookies
-    @products_count = CookiesBucket.new(cookies).get_products_count
+    @products = cookies_bucket.get_products
+    @cookie_products = cookies_bucket.get_products_from_cookies
+    @products_count = cookies_bucket.get_products_count
+  end
+
+  private
+
+  def cookies_bucket
+    @cookies_bucket ||= CookiesBucket.new(cookies)
   end
 end

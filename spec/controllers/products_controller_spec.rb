@@ -56,7 +56,7 @@ RSpec.describe ProductsController, type: :controller do
 
     it 'add product to cookies' do
       post :buy, params: {slug: product.slug}
-      prod = "#{COOKIE_PRODUCT_PREFIX}#{product.id}"
+      prod = "#{CookiesBucket::COOKIE_PRODUCT_PREFIX}#{product.id}"
       expect(cookies[prod]).to eq(1)
     end
 

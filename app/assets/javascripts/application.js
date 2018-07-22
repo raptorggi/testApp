@@ -16,7 +16,7 @@
 //= require js.cookie
 //= require_tree .
 
-function make_order() {
+function total_price() {
   var order = 0;
   $('[data-product-price]').each (function () {
     order += parseInt($(this).data('product-price')) * parseInt(Cookies.get($(this).data('cookie-product')));
@@ -52,7 +52,7 @@ function update_cart_index() {
 }
 
 $(document).ready(function() {
-  make_order();
+  total_price();
 
   $('[data-product-slug]').click(function(event){
     $.post('/products/' + $(this).data('product-slug') + '/buy/', function() {$('#cart-button').html(Cookies.get('products_count'));});
@@ -71,7 +71,7 @@ $(document).ready(function() {
       $('#'.concat(id)).html(Cookies.get(id));
     }
     update_cart(-1);
-    make_order();
+    total_price();
   });
 
   $('.js-button-cart-plus').click(function(event){
@@ -79,7 +79,7 @@ $(document).ready(function() {
     var id = String($(this).data('cookie-product'));
     $('#'.concat(id)).html(Cookies.get(id));
     update_cart(1);
-    make_order();
+    total_price();
   });
 });
 

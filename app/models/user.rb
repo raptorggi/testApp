@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include AuthHelper
+
   attr_accessor :password
   
   has_many :user_carts
@@ -11,6 +13,6 @@ class User < ApplicationRecord
 
   private
   def encrypt_password
-    self.password_hash = Digest::SHA2.hexdigest(password)
+    self.password_hash = encode(password)
   end  
 end
