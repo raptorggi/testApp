@@ -9,7 +9,7 @@ RSpec.describe ProductsController, type: :controller do
 
     it "render template" do
       get :index
-      expect(response).to render_template("index")
+      expect(response).to render_template('index')
     end
   end
 
@@ -23,7 +23,7 @@ RSpec.describe ProductsController, type: :controller do
       expect(response).to be_success
     end
 
-    it "returns requested product" do
+    it 'returns requested product' do
       get :show, params: {category_slug: category.slug, slug: product.slug}
       expect(assigns(:product).id).to eq(product.id)
     end
@@ -35,7 +35,7 @@ RSpec.describe ProductsController, type: :controller do
       expect(response).to be_success
     end
 
-    it "returns requested category" do
+    it 'returns requested category' do
       get :category, params: {slug: category.slug}
       expect(assigns(:category).id).to eq(category.id)
     end

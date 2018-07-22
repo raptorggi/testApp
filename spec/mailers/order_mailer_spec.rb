@@ -15,18 +15,18 @@ RSpec.describe OrderMailer, type: :mailer do
   end
 
   describe '#order_email_to_users' do
-    it "renders the headers" do
+    it 'renders the headers' do
       expect(user_mail.subject).to eq("Order ##{order.id}")
       expect(user_mail.to).to eq([user.email])
-      expect(user_mail.from).to eq(["no-reply@testapp.com"])
+      expect(user_mail.from).to eq(['no-reply@testapp.com'])
     end
   end
 
   describe '#order_email_to_admins' do
-    it "renders the headers" do
+    it 'renders the headers' do
       expect(admin_mail.subject).to eq("user order ##{order.id}")
       expect(admin_mail.to).to eq([user_admin.email])
-      expect(admin_mail.from).to eq(["no-reply@testapp.com"])
+      expect(admin_mail.from).to eq(['no-reply@testapp.com'])
     end
   end
 end

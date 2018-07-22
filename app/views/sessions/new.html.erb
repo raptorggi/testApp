@@ -15,3 +15,7 @@
   </div>
   <%= u.submit "Sign in"%>
 <% end %>
+
+<%= link_to "https://oauth.vk.com/authorize?client_id=#{ENV['VK_CLIENT_ID']}&display=page&redirect_uri=#{ENV['VK_REDIRECT_URI']}/vk_callback&scope=email&response_type=code&v=5.80"  do %>
+  <button type="button" class="btn btn-primary">Sign with VK</button>
+<% end %>

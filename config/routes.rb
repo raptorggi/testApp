@@ -20,7 +20,9 @@ Rails.application.routes.draw do
   get 'confirmed' => 'orders#confirmed', as: :confirmed_order
 
   resources :users, only: [:new, :create, :index]
+  
   resources  :sessions, only: [:new, :create, :destroy]
+  get 'vk_callback' => 'sessions#vk_callback' 
 
   namespace :admin do
     resources :feedbacks, :pages, :users

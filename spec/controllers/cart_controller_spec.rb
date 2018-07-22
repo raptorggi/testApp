@@ -4,12 +4,12 @@ RSpec.describe CartController, type: :controller do
   let(:category) { create :category }
   let(:product) { create :product,  name: 'product'}
   let(:product2) { create :product, name: 'product2'}
-  COOKIE_PRODUCT_PREFIX = "cart_product_"
+  COOKIE_PRODUCT_PREFIX = 'cart_product_'
 
   before do
     product
     product2
-    @request.host = "localhost:3000"
+    @request.host = 'localhost:3000'
   end
 
   describe '#cart' do 
@@ -20,7 +20,7 @@ RSpec.describe CartController, type: :controller do
 
     it 'render template' do
       get :cart
-      expect(response).to render_template("cart")
+      expect(response).to render_template('cart')
     end
 
     it 'have correct products in cart' do
