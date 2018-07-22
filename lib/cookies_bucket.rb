@@ -1,31 +1,31 @@
 class CookiesBucket
-  COOKIE_PRODUCT_PREFIX = "cart_product_"
+  COOKIE_PRODUCT_PREFIX = 'cart_product_'.freeze
 
   def initialize(cookies)
     @cookies = cookies
-    @cookies[:token] = SecureRandom.uuid if !@cookies.key?('token')
+    @cookies[:token] = SecureRandom.uuid unless @cookies.key?('token')
   end
 
   def add_product_to_cookies(slug)
     product = "#{COOKIE_PRODUCT_PREFIX}#{(Product.find_by slug: slug).id}"
-    if @cookies[product]
-      @cookies[product] = @cookies[product].to_i + 1
-    else
-      @cookies[product] = 1
-    end
+    @cookies[product] = if @cookies[product]
+                          @cookies[product].to_i + 1
+                        else
+                          1
+                        end
     update_products_count
   end
 
   def update_products_count
     @cookies[:products_count] = 0
-    products = @cookies.select { |prod, value| prod.include?  COOKIE_PRODUCT_PREFIX }
+    products = @cookies.select { |prod, _value| prod.include? COOKIE_PRODUCT_PREFIX }
     products.each do |product|
       @cookies[:products_count] += product[1].to_i
     end
   end
 
   def get_products_from_cookies
-    @cookies.select { |prod, value| prod.include? COOKIE_PRODUCT_PREFIX }
+    @cookies.select { |prod, _value| prod.include? COOKIE_PRODUCT_PREFIX }
   end
 
   def get_products_and_count

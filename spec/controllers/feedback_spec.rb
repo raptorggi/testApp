@@ -1,4 +1,4 @@
-require "rails_helper"
+require 'rails_helper'
 
 describe FeedbacksController, type: :controller do
   describe 'new' do
@@ -15,7 +15,7 @@ describe FeedbacksController, type: :controller do
     it 'assigns feedbacks' do
       create_list(:feedback, 5, name: '1', email: '2', phone: '3', message: '4')
       get :new
-      expect(assigns(:feedbacks).count).to eq(5) 
+      expect(assigns(:feedbacks).count).to eq(5)
     end
   end
 end

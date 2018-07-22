@@ -12,17 +12,17 @@ Rails.application.routes.draw do
   get 'products/:slug' => 'products#category', as: :show_category
   get 'products/:category_slug/:slug' => 'products#show', as: :show_product
   post 'products/:slug/buy' => 'products#buy', as: :add_product_to_cart
-  
+
   get 'cart' => 'cart#cart', as: :show_cart
 
   get 'order' => 'orders#order'
   post 'order' => 'orders#create', as: :create_order
   get 'confirmed' => 'orders#confirmed', as: :confirmed_order
 
-  resources :users, only: [:new, :create, :index]
-  
-  resources  :sessions, only: [:new, :create, :destroy]
-  get 'vk_callback' => 'sessions#vk_callback' 
+  resources :users, only: %i[new create index]
+
+  resources :sessions, only: %i[new create destroy]
+  get 'vk_callback' => 'sessions#vk_callback'
 
   namespace :admin do
     resources :feedbacks, :pages, :users

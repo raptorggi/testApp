@@ -8,12 +8,12 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new order_params
     if @order.save
-      products = params[:order][:order_products_attributes]
+      products = params[:order][:order_products_attributes].values
       user_token = CookiesBucket.new(cookies).get_user_token
       products.each do |product|
-        prod = Product.find products[product][:product_id]
-        prod.user_carts.create! user_token: user_token, quantity: products[product][:count].to_i, user_id: session[:user_id]
-        prod.update reserved: prod.reserved + products[product][:count].to_i
+        prod = @order.products.find { |e| e.id == product[:product_id].to_i }
+        prod.user_carts.create! user_token: user_token, quantity: product[:count].to_i, user_id: session[:user_id]
+        prod.update reserved: prod.reserved + product[:count].to_i
       end
       CookiesBucket.new(cookies).clear
       OrderMailer.order_email(params[:order][:email], @order.id).deliver_now
@@ -24,12 +24,9 @@ class OrdersController < ApplicationController
     end
   end
 
-  def confirmed
-
-  end
+  def confirmed; end
 
   def order_params
-    params.require(:order).permit(:name, :surname, :address, :phone, :email, order_products_attributes: [:product_id, :count])
+    params.require(:order).permit(:name, :surname, :address, :phone, :email, order_products_attributes: %i[product_id count])
   end
-  
 end

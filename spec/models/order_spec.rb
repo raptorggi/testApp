@@ -9,7 +9,7 @@ RSpec.describe Order, type: :model do
   end
 
   describe 'responds' do
-    it { is_expected.to respond_to :name, :surname, :address, :phone, :email}
+    it { is_expected.to respond_to :name, :surname, :address, :phone, :email }
   end
 
   describe 'validates' do
@@ -24,5 +24,4 @@ RSpec.describe Order, type: :model do
     it { is_expected.to validate_length_of(:phone).is_at_least(10) }
     it { is_expected.to validate_length_of(:phone).is_at_most(15) }
   end
-
 end
