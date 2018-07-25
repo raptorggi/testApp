@@ -1,19 +1,14 @@
 class User < ApplicationRecord
-  include AuthHelper
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessor :password
+  has_many :user_carts
+  has_many :orders
 
-  has_many :user_carts, dependent: :destroy
-  has_many :products, through: :user_carts
-
-  validates :name, presence: true, length: { maximum: 50 }
-  validates :email, presence: true, length: { maximum: 50 }, uniqueness: { case_sensitive: false }
-  validates :password, presence: true, length: { within: 6..40 }, confirmation: true
-  before_save :encrypt_password
-
-  private
-
-  def encrypt_password
-    self.password_hash = encode(password)
-  end
+  validates :name, :second_name, :phone, presence: true
+  validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
+  validates :name, :second_name, length: { maximum: 60 }
+  validates :phone, length: { minimum: 10, maximum: 15 }
 end

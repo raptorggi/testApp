@@ -14,10 +14,10 @@
     </div>
     <div class="col-sm-3">
       <h4><%= product.price %> руб. </h4>
-      <% if product.quantity - product.reserved <= 0 %>
+      <% if product_quantity(product) <= 0 %>
         <h5>нет в наличии </h5>
       <% else %>
-        <h5>Количество: <%= product.quantity - product.reserved %> </h5>
+        <h5>Количество: <%= product_quantity product %> </h5>
         <%= button_tag "Купить", data: { product_slug: product.slug, product_name: product.name.to_s }, class: "btn btn-primary"%>
       <% end %>
     </div>

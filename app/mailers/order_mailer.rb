@@ -10,7 +10,7 @@ class OrderMailer < ApplicationMailer
   def order_email_to_admins(user_email, order_id)
     @order = Order.find order_id
     @user_email = user_email
-    admins = User.where admin: true
+    admins = AdminUser.all
     mail(to: admins.pluck(:email), subject: "user order ##{@order.id}", template_name: 'order_email_to_admins').deliver
   end
 

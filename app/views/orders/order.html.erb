@@ -32,21 +32,8 @@
       <% end %>
     </ul>
   <% end %>
-
-  <div class="form-group">
-    <%= order.text_field :name, class: "form-control", placeholder: 'Name' %>
-  </div>
-  <div class="form-group">
-    <%= order.text_field :surname, class: "form-control", placeholder: 'Surname' %>
-  </div>
-  <div class="form-group">
-    <%= order.text_field :phone, class: "form-control", placeholder: 'Phone number' %>
-  </div>
   <div class="form-group">
     <%= order.text_field :address, class: "form-control", placeholder: 'Address' %>
-  </div>
-  <div class="form-group">
-    <%= order.text_field :email, class: "form-control", placeholder: 'E-mail' %>
   </div>
   <%= order.fields_for :order_products do |order_products_attributes| %>
     <% @products.each_with_index do |(prod, value), i| %>

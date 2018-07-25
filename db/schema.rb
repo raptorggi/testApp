@@ -10,93 +10,134 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_180_712_102_910) do
+ActiveRecord::Schema.define(version: 20180725013635) do
+
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'categories', force: :cascade do |t|
-    t.string 'name'
-    t.text 'description'
-    t.integer 'parent_id'
-    t.string 'slug'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string "namespace"
+    t.text "body"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.string "author_type"
+    t.bigint "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
   end
 
-  create_table 'feedbacks', force: :cascade do |t|
-    t.string 'name'
-    t.string 'email'
-    t.string 'phone'
-    t.text 'message'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "admin_users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_admin_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table 'order_products', force: :cascade do |t|
-    t.bigint 'order_id'
-    t.bigint 'product_id'
-    t.integer 'count'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['order_id'], name: 'index_order_products_on_order_id'
-    t.index ['product_id'], name: 'index_order_products_on_product_id'
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "parent_id"
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'orders', force: :cascade do |t|
-    t.string 'name'
-    t.string 'surname'
-    t.string 'address'
-    t.string 'phone'
-    t.string 'email'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "feedbacks", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "phone"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'pages', force: :cascade do |t|
-    t.string 'slug'
-    t.string 'title'
-    t.text 'text'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['slug'], name: 'index_pages_on_slug'
+  create_table "order_products", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "product_id"
+    t.integer "count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_products_on_order_id"
+    t.index ["product_id"], name: "index_order_products_on_product_id"
   end
 
-  create_table 'products', force: :cascade do |t|
-    t.bigint 'category_id'
-    t.string 'name'
-    t.text 'description'
-    t.string 'slug'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'image_file_name'
-    t.string 'image_content_type'
-    t.integer 'image_file_size'
-    t.datetime 'image_updated_at'
-    t.integer 'quantity'
-    t.integer 'reserved'
-    t.integer 'price', default: 0, null: false
-    t.string 'price_currency', default: 'RUB', null: false
-    t.index ['category_id'], name: 'index_products_on_category_id'
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
-  create_table 'user_carts', force: :cascade do |t|
-    t.bigint 'user_id'
-    t.bigint 'product_id'
-    t.string 'user_token'
-    t.integer 'quantity'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['product_id'], name: 'index_user_carts_on_product_id'
-    t.index ['user_id'], name: 'index_user_carts_on_user_id'
+  create_table "pages", force: :cascade do |t|
+    t.string "slug"
+    t.string "title"
+    t.text "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_pages_on_slug"
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'name'
-    t.string 'email'
-    t.string 'password_hash'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.boolean 'admin'
-    t.index ['email'], name: 'index_users_on_email'
+  create_table "products", force: :cascade do |t|
+    t.bigint "category_id"
+    t.string "name"
+    t.text "description"
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer "quantity"
+    t.integer "reserved"
+    t.integer "price", default: 0, null: false
+    t.string "price_currency", default: "RUB", null: false
+    t.index ["category_id"], name: "index_products_on_category_id"
   end
+
+  create_table "user_carts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "product_id"
+    t.string "user_token"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_user_carts_on_product_id"
+    t.index ["user_id"], name: "index_user_carts_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "second_name"
+    t.string "phone"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
 end
