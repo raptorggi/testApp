@@ -5,8 +5,4 @@ module ProductsHelper
       create_category_list(child, &func)
     end
   end
-
-  def product_quantity product
-    product.quantity - product.reserved
-  end
 end

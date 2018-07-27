@@ -3,7 +3,7 @@
     pages
   </a>
   <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-    <% @pages.each do |page| %>
+    <% @navbar_pages.each do |page| %>
       <li>
         <%= link_to page.slug, show_page_path(slug: page.slug), class: "dropdown-item" %>
       </li>

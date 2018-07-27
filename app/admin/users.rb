@@ -12,4 +12,8 @@ ActiveAdmin.register User do
     actions
   end
 
+  filter :name, label: 'First name'
+  filter :second_name, label: 'Second name'
+  filter :email, label: 'E-mail'
+  filter :phone
 end

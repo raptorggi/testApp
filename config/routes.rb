@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users,
-  :path => "user",
+  :path => 'user',
   :path_names => {
     :sign_in => 'login',
     :sign_out => 'logout',
     :password => 'secret',
     :registration => 'register',
     :sign_up => 'cmon_let_me_in',
-    :profile => 'profile' }
+    :profile => 'profile'},
+  controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   ActiveAdmin.routes(self)
 
   root 'application#index'
@@ -30,7 +31,5 @@ Rails.application.routes.draw do
   get 'order' => 'orders#order'
   post 'order' => 'orders#create', as: :create_order
   get 'confirmed' => 'orders#confirmed', as: :confirmed_order
-  # get 'vk_callback' => 'sessions#vk_callback'
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
