@@ -32,7 +32,6 @@ function update_cart(count) {
 function show_product(product) {
   $('#cart-message').fadeIn('fast', function(){
     $('#cart-message').html(product + ' ' + $(this).data('text'));
-    console.log($(this).data('text'));
     $('#cart-message').delay(2000).fadeOut(); 
   });
 }
