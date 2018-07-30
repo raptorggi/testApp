@@ -1,21 +1,22 @@
 <%= content_for :title do %>
-  <%= @product.name %>
+  locale_name(@product)
 <% end %>
-<h3 id="cart-message" class="badge badge-secondary"></h3>
+<h3 id="cart-message" data-text=<%= t('products.buy') %> class="badge badge-secondary"></h3>
 
-<h2> <%= @product.name %> </h2>
+  <h2> <%= locale_name(@product) %> </h2>
+
 <div class="row">
   <div class="col-sm-8">
     <h4> <%= @product.description %> </h4>
     <%= image_tag @product.image.url(:large) %>
   </div>
   <div class="col-sm-4">
-    <h4> Price: <%= @product.price %> </h4>
+    <h4><%= "#{@product.price} #{t('currency')}" %></h4>
     <% if @product.left <= 0 %>
-      <h5>нет в наличии </h5>
+      <h5><%= t('products.sold') %></h5>
     <% else %>
-      <h4> Количество: <%= @product.left %> </h4>
-      <%= button_tag "Купить", data: { product_slug: @product.slug, product_name: @product.name.to_s }, class: "btn btn-primary"%>
+      <h4><%= "#{t('products.quantity')}#{product.left}" %></h4>
+      <%= button_tag t('buttons.buy'), data: { product_slug: @product.slug, product_name: locale_name(@product).to_s }, class: "btn btn-primary"%>
       <%= link_to show_product_path(@product.category.slug, @product.slug, format: 'pdf') do %>
         <button type="button" class="btn btn-primary">PDF</button>
       <% end %>

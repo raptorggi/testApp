@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180727070656) do
+ActiveRecord::Schema.define(version: 20180730063112) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,12 +33,13 @@ ActiveRecord::Schema.define(version: 20180727070656) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string "name"
     t.text "description"
     t.integer "parent_id"
     t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name_ru"
+    t.string "name_en"
   end
 
   create_table "feedbacks", force: :cascade do |t|
@@ -79,7 +80,6 @@ ActiveRecord::Schema.define(version: 20180727070656) do
 
   create_table "products", force: :cascade do |t|
     t.bigint "category_id"
-    t.string "name"
     t.text "description"
     t.string "slug"
     t.datetime "created_at", null: false
@@ -92,6 +92,8 @@ ActiveRecord::Schema.define(version: 20180727070656) do
     t.integer "reserved"
     t.integer "price", default: 0, null: false
     t.string "price_currency", default: "RUB", null: false
+    t.string "name_ru"
+    t.string "name_en"
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 

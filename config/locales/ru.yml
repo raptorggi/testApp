@@ -1,0 +1,43 @@
+ru:
+  currency: 'Руб.'
+  buttons:
+    buy: 'Купить'
+    order: 'Оформить заказ'
+  user_fields:
+    name: 'Имя'
+    email: 'Эл. почта'
+    phone: 'Телефон'
+    message: 'Сообщение'
+    address: 'Адрес'
+  navbar:
+    sign_in: 'Войти'
+    sign_out: 'Выйти'
+    sign_up: 'Создать учетную запись'
+    profile: 'Профиль' 
+    welcome: 'Приветствие'
+    about: 'О сайте'
+    feedback: 'Отзывы'
+    category: 'Категории'
+    cart: 'Корзина'
+    page: 'Страницы'
+  feedbacks:
+    new: 'Создать отзыв'
+  categories:
+    title: 'Категории'
+  products:
+    sold: 'нет в наличии'
+    quantity: 'В наличии:'
+    buy: ' добавлен'
+  carts:
+    title: 'Страница заказа'
+    cart: 'Корзина'
+    name: 'Товар'
+    price: 'Цена'
+    quantity: 'Количество'
+    total: 'Итог:'
+  order:
+    title: 'Оформление заказа'
+    finish: 'Спасибо за покупку!'
+
+
+

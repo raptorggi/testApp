@@ -18,16 +18,24 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "welcome", index_path %></li>
-            <li><%= link_to "about", about_path %></li>
-            <li><%= link_to "feedback", new_feedback_path %></li>
-            <li><%= link_to "categories", products_index_path %></li>
+            <li><%= link_to t('navbar.welcome'), index_path %></li>
+            <li><%= link_to t('navbar.about'), about_path %></li>
+            <li><%= link_to t('navbar.feedback'), new_feedback_path %></li>
+            <li><%= link_to t('navbar.category'), products_index_path %></li>
             <%= render 'layouts/menu' %>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li>
+              <% if I18n.locale == I18n.default_locale %>
+                <%= link_to 'EN', url_for(:locale => 'en') %>
+              <% else %>
+                
+                <%= link_to 'RU', url_for(:locale => 'ru') %>
+              <%end%>
+            </li>
+            <li>
               <%= link_to show_cart_path do %>
-                <button type="button" class="btn btn-primary btn-sm"> Cart
+                <button type="button" class="btn btn-primary btn-sm"> <%= t('navbar.cart') %>
                 <span class="badge badge-light" id="cart-button"> 
                   <% if cookies[:products_count] %>
                     <%= cookies[:products_count] %>
@@ -38,11 +46,11 @@
               <% end %>
             </li>
             <% if current_user %>
-              <li><%= link_to "Profile", edit_user_registration_path %></li>
-              <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+              <li><%= link_to t('navbar.profile'), edit_user_registration_path %></li>
+              <li><%= link_to t('navbar.sign_out'), destroy_user_session_path, :method => :delete %></li>
             <% else %>
-              <li><%= link_to "Sign in", new_user_session_path %></li>
-              <li><%= link_to "Sign up", new_user_registration_path %></li>
+              <li><%= link_to t('navbar.sign_in'), new_user_session_path %></li>
+              <li><%= link_to t('navbar.sign_up'), new_user_registration_path %></li>
             <% end %>
           </ul>      
         </div>

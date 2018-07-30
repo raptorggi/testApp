@@ -21,7 +21,7 @@ function total_price() {
   $('[data-product-price]').each (function () {
     order += parseInt($(this).data('product-price')) * parseInt(Cookies.get($(this).data('cookie-product')));
   });
-  $('#order').html('Итог: ' + order);
+  $('#order').html($('[data-text]').data('text') + order);
 }
 
 function update_cart(count) {
@@ -31,7 +31,8 @@ function update_cart(count) {
 
 function show_product(product) {
   $('#cart-message').fadeIn('fast', function(){
-    $('#cart-message').html(product + " добавлен в корзину");
+    $('#cart-message').html(product + ' ' + $(this).data('text'));
+    console.log($(this).data('text'));
     $('#cart-message').delay(2000).fadeOut(); 
   });
 }

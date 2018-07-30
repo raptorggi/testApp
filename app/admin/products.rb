@@ -3,7 +3,8 @@ ActiveAdmin.register Product do
   index do
     selectable_column
     id_column
-    column :name
+    column :name_ru
+    column :name_en
     column 'Left' do |object|
       object.left
     end
@@ -18,7 +19,8 @@ ActiveAdmin.register Product do
     actions
   end
 
-  filter :name
+  filter :name_ru
+  filter :name_en
   filter :quantity
   filter :reserved
 

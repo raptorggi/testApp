@@ -13,21 +13,45 @@
 # To use a different locale, set it with `I18n.locale`:
 #
 #     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  currency: 'RUB'
+  buttons:
+    buy: 'Buy'
+    order: 'Create order'
+  user_fields:
+    name: 'Name'
+    email: 'E-mail'
+    phone: 'Phone number'
+    message: 'Message'
+    address: 'Address'
+  navbar:
+    sign_in: 'Sign in'
+    sign_out: 'Sign out'
+    sign_up: 'Sign up'
+    profile: 'Profile' 
+    welcome: 'Welcome'
+    about: 'About'
+    feedback: 'Feedbacks'
+    category: 'Categories'
+    cart: 'Cart'
+    page: 'Pages'
+  feedbacks:
+    new: 'Create feedback'
+  categories:
+    title: 'Categories'
+  products:
+    sold: 'out of stock'
+    quantity: 'Quantity:'
+    buy: ' added to cart'
+  carts:
+    title: 'Order Pages'
+    cart: 'Cart'
+    name: 'Product'
+    price: 'Price'
+    quantity: 'Quantity'
+    total: 'Total:'
+  order:
+    title: 'Ordering'
+    finish: 'Thank you for your purchase!'
+    
+

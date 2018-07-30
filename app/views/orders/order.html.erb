@@ -1,22 +1,22 @@
 <%= content_for :title do %>
-  Страница заказа
+  <%= t('order.title') %>
 <% end %>
-<h1>Оформление заказа</h1>
+<h1><%= t('order.title') %></h1>
 
 <table class="table table-borderless table-hover">
   <thead>
     <tr>
       <th scope="col" width="5%">#</th>
-      <th scope="col" width="60%">Товар</th>
-      <th scope="col" width="15%">Цена</th>
-      <th scope="col" width="20%">Количество</th>
+      <th scope="col" width="60%"><%= t('cart.product') %></th>
+      <th scope="col" width="15%"><%= t('cart.price') %></th>
+      <th scope="col" width="20%"><%= t('cart.quantity') %></th>
     </tr>
   </thead>
   <tbody>
     <% @products.each_with_index do |(product, value), i| %>
       <tr>
         <th><%= i + 1 %></th>
-        <td><%=link_to product.name, show_product_path(product.category.slug, product.slug) %></td>
+        <td><%=link_to locale_name(product), show_product_path(product.category.slug, product.slug) %></td>
         <td ><%= product.price %></td>
         <td><%= value %></td>
       </tr>
@@ -33,7 +33,7 @@
     </ul>
   <% end %>
   <div class="form-group">
-    <%= order.text_field :address, class: "form-control", placeholder: 'Address' %>
+    <%= order.text_field :address, class: "form-control", placeholder: t('user_fields.address') %>
   </div>
   <%= order.fields_for :order_products do |order_products_attributes| %>
     <% @products.each_with_index do |(prod, value), i| %>
@@ -41,5 +41,5 @@
       <input value=<%= "#{value}" %> type="hidden" name=<%="order[order_products_attributes][#{i}][[count]]"%> id=<%= "order_order_products_attributes_#{i}_[count]" %>>
     <% end %>
   <% end %>
-  <%= order.submit 'Оформить', class: "btn btn-primary" %>
+  <%= order.submit t('buttons.order'), class: "btn btn-primary" %>
 <% end %>
