@@ -43,6 +43,7 @@ Shoulda::Matchers.configure do |config|
 end
 
 RSpec.configure do |config|
+  config.include Devise::Test::ControllerHelpers, type: :controller
   config.include FactoryBot::Syntax::Methods
   # showMeTheCookies.register_adapter(:selenium_chrome, ShowMeTheCookies::Selenium)
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures

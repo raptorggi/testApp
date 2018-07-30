@@ -4,8 +4,8 @@ RSpec.describe OrderMailer, type: :mailer do
   let(:category) { create :category }
   let(:product) { create :product, category_id: category.id }
   let(:user) { create :user }
-  let(:user_admin) { create :user, name: 'Admin', admin: true }
-  let(:order) { create :order }
+  let(:user_admin) { create :admin_user }
+  let(:order) { create :order, user_id: user.id }
   let(:order_product) { create order_id: order.id, product_id: product.id, count: 4 }
   let(:user_mail) { OrderMailer.order_email_to_users user.email, order.id }
   let(:admin_mail) { OrderMailer.order_email_to_admins user.email, order.id }

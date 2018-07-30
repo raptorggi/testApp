@@ -10,4 +10,8 @@ class Product < ApplicationRecord
 
   has_attached_file :image, styles: { small: '64x64', med: '100x100', large: '200x200' }, default_url: '/img/default.jpg'
   validates_attachment_content_type :image, content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']
+
+  def left
+    quantity - reserved
+  end
 end

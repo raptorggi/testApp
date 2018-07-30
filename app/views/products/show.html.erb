@@ -11,10 +11,10 @@
   </div>
   <div class="col-sm-4">
     <h4> Price: <%= @product.price %> </h4>
-    <% if @product.quantity - @product.reserved <= 0 %>
+    <% if @product.left <= 0 %>
       <h5>нет в наличии </h5>
     <% else %>
-      <h4> Количество: <%= @product.quantity - @product.reserved %> </h4>
+      <h4> Количество: <%= @product.left %> </h4>
       <%= button_tag "Купить", data: { product_slug: @product.slug, product_name: @product.name.to_s }, class: "btn btn-primary"%>
       <%= link_to show_product_path(@product.category.slug, @product.slug, format: 'pdf') do %>
         <button type="button" class="btn btn-primary">PDF</button>

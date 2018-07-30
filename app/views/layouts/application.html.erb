@@ -37,15 +37,12 @@
                 </span></button>
               <% end %>
             </li>
-            <% if current_user&.admin %>
-              <li><%= link_to "Admin", admin_root_path %></li>
-            <% end %>
             <% if current_user %>
-              <li><%= link_to "Profile", users_path %></li>
-              <li><%= link_to "Sign out", session_path(id: session[:user_id]), :method => :delete %></li>
+              <li><%= link_to "Profile", edit_user_registration_path %></li>
+              <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
             <% else %>
-              <li><%= link_to "Sign in", new_session_path %></li>
-              <li><%= link_to "Sign up", new_user_path %></li>
+              <li><%= link_to "Sign in", new_user_session_path %></li>
+              <li><%= link_to "Sign up", new_user_registration_path %></li>
             <% end %>
           </ul>      
         </div>
