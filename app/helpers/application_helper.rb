@@ -4,7 +4,7 @@ module ApplicationHelper
   end
 
   def locale_name object
-    if session_locale == :ru
+    if (I18n.locale || session_locale) == :ru
       object.name_ru
     else
       object.name_en

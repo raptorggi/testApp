@@ -1,4 +1,5 @@
 class OrderMailer < ApplicationMailer
+  helper ApplicationHelper
   default from: 'no-reply@testapp.com'
 
   def order_email_to_users(user_email, order_id)

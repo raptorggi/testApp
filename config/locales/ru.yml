@@ -5,10 +5,12 @@ ru:
     order: 'Оформить заказ'
   user_fields:
     name: 'Имя'
-    email: 'Эл. почта'
+    last_name: 'Фамилия'
+    email: 'Эл. адрес'
     phone: 'Телефон'
     message: 'Сообщение'
     address: 'Адрес'
+    password: 'Пароль'
   navbar:
     sign_in: 'Войти'
     sign_out: 'Выйти'

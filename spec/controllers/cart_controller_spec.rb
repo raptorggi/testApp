@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe CartController, type: :controller do
   let(:category) { create :category }
-  let(:product) { create :product,  name: 'product' }
-  let(:product2) { create :product, name: 'product2' }
+  let(:product) { create :product,  name_ru: 'product' }
+  let(:product2) { create :product, name_ru: 'product2' }
 
   before do
     product

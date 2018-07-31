@@ -20,10 +20,12 @@ en:
     order: 'Create order'
   user_fields:
     name: 'Name'
+    last_name: 'Last name'
     email: 'E-mail'
     phone: 'Phone number'
     message: 'Message'
     address: 'Address'
+    password: 'Password'
   navbar:
     sign_in: 'Sign in'
     sign_out: 'Sign out'

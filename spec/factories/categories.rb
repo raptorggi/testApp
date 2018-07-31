@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :category do
-    name 'category'
+    name_ru 'category'
+    name_en 'category'
     description 'description for cat'
   end
 end

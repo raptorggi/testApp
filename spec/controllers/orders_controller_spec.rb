@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe OrdersController, type: :controller do
   let(:category) { create :category }
-  let(:product) { create :product,  name: 'product' }
+  let(:product) { create :product }
   let(:user) { create :user }
   let(:user_admin) { create :admin_user }
 

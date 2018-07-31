@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = ProductPdf.new(@product, show_product_url(@product.category.slug, @product.slug, format: 'pdf'))
+        pdf = ProductPdf.new(@product, session[:locale], show_product_url(@product.category.slug, @product.slug, format: 'pdf'))
         send_data pdf.render
       end
     end
