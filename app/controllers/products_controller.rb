@@ -1,12 +1,16 @@
 class ProductsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
+  caches_action :index, :category, :show
+  #caches_page :category, :index
+
   def index
     @categories = Category.root
   end
 
   def show
     @product = Product.find_by slug: params[:slug]
+    fresh_when etag: @product, last_modified: @product.updated_at
     respond_to do |format|
       format.html
       format.pdf do
