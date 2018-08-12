@@ -7,8 +7,8 @@ RSpec.describe OrderMailer, type: :mailer do
   let(:user_admin) { create :admin_user }
   let(:order) { create :order, user_id: user.id }
   let(:order_product) { create order_id: order.id, product_id: product.id, count: 4 }
-  let(:user_mail) { OrderMailer.order_email_to_users user.email, order.id }
-  let(:admin_mail) { OrderMailer.order_email_to_admins user.email, order.id }
+  let(:user_mail) { OrderMailer.order_email_to_users 'ru', user.email, order.id }
+  let(:admin_mail) { OrderMailer.order_email_to_admins 'ru', user.email, order.id }
 
   before do
     user_admin

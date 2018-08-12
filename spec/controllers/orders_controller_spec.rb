@@ -27,7 +27,7 @@ RSpec.describe OrdersController, type: :controller do
   describe '#create' do
     it 'redirect to confirmed page if order creation success' do
       post :create, params: { order: { address: 'testtest', order_products_attributes: { '0' => { product_id: product.id, count: 2 } } } }
-      expect(response).to redirect_to(confirmed_order_path)
+      expect(response).to redirect_to(confirmed_order_path('ru'))
     end
 
     it "render template 'order' if order creation failed" do

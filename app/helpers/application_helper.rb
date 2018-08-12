@@ -1,10 +1,10 @@
 module ApplicationHelper
-  def session_locale
-    session[:locale]
+  def locale 
+    locale = params[:locale] || I18n.default_locale
   end
 
   def locale_name object
-    if (I18n.locale || session_locale) == :ru
+    if (I18n.locale || locale) == :ru
       object.name_ru
     else
       object.name_en

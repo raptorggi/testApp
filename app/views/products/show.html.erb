@@ -16,7 +16,7 @@
       <h5><%= t('products.sold') %></h5>
     <% else %>
       <h4><%= "#{t('products.quantity')}#{@product.left}" %></h4>
-      <%= button_tag t('buttons.buy'), data: { product_slug: @product.slug, product_name: locale_name(@product).to_s }, class: "btn btn-primary"%>
+      <%= button_tag t('buttons.buy'), data: {product_slug: @product.slug, product_name: locale_name(@product).to_s }, class: "btn btn-primary"%>
       <%= link_to show_product_path(@product.category.slug, @product.slug, format: 'pdf') do %>
         <button type="button" class="btn btn-primary">PDF</button>
       <% end %>

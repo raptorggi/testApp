@@ -10,7 +10,6 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find_by slug: params[:slug]
-    fresh_when etag: @product, last_modified: @product.updated_at
     respond_to do |format|
       format.html
       format.pdf do

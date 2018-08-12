@@ -19,7 +19,7 @@
         <% @order.order_products.each_with_index do |prod, i| %>
           <tr>
             <th><%= i + 1 %></th>
-            <td><%=link_to locale_name(prod.product), show_product_url(prod.product.category.slug, prod.product.slug) %></td>
+            <td><%=link_to locale_name(prod.product), show_product_url(@locale, prod.product.category.slug, prod.product.slug) %></td>
             <td ><%= prod.product.price %></td>
             <td><%= prod.count %></td>
           </tr>
