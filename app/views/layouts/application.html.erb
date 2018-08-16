@@ -25,14 +25,13 @@
             <%= render 'layouts/menu' %>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li>
-              <% if I18n.locale == I18n.default_locale %>
-                <%= link_to 'EN', url_for(:locale => 'en') %>
-              <% else %>
-                
-                <%= link_to 'RU', url_for(:locale => 'ru') %>
-              <%end%>
-            </li>
+            <% if I18n.locale == I18n.default_locale %>
+              <li class="nav-item nav-link active"><%= link_to 'RU', url_for(:locale => 'ru') %></li>
+              <li class="nav-item nav-link"><%= link_to 'EN', url_for(:locale => 'en') %></li>
+            <% else %>
+              <li class="nav-item nav-link"><%= link_to 'RU', url_for(:locale => 'ru') %></li>
+              <li class="nav-item nav-link active"><%= link_to 'EN', url_for(:locale => 'en')  %></li>
+            <%end%>
             <li>
               <%= link_to show_cart_path(locale) do %>
                 <button type="button" class="btn btn-primary btn-sm"> <%= t('navbar.cart') %>

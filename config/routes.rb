@@ -19,14 +19,14 @@ Rails.application.routes.draw do
       :profile => 'profile'}
     
     get 'about' => 'application#about'
-    get 'index' => 'application#index'
+    get '/' => 'application#index', as: :index
 
     get 'feedbacks' => 'feedbacks#new', as: :new_feedback
     post 'feedbacks' => 'feedbacks#create'
 
     get 'page/:slug' => 'page#show', as: :show_page
 
-    get 'products/index' => 'products#index'
+    get 'products' => 'products#index', as: :products_index
     get 'products/:slug' => 'products#category', as: :show_category
     get 'products/:category_slug/:slug' => 'products#show', as: :show_product 
     post 'products/:slug/buy' => 'products#buy', as: :add_product_to_cart
