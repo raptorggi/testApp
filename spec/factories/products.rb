@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :product do
-    name 'product'
+    name_ru 'product'
+    name_en 'product'
     description 'description for product'
     quantity 10
     reserved 0

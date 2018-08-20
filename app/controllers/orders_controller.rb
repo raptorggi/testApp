@@ -18,8 +18,8 @@ class OrdersController < ApplicationController
         prod.update reserved: prod.reserved + product[:count].to_i
       end
       CookiesBucket.new(cookies).clear
-      OrderMailer.order_email(current_user.email, order.id).deliver_now
-      redirect_to confirmed_order_path
+      OrderMailer.order_email(locale, current_user.email, order.id).deliver_now
+      redirect_to confirmed_order_path(locale)
     else
       @products = CookiesBucket.new(cookies).get_products_and_count
       render :order

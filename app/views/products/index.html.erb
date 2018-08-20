@@ -1,11 +1,11 @@
 <%= content_for :title do %>
-  Категории
+  <%= t('categories.title') %>
 <% end %>
 
-<h1> Категории <h1>
+<h1><%= t('categories.title') %><h1>
 
 <% @categories.each do |cat| %>
   <% create_category_list(cat) do |category| %>
-    <h2><%=link_to category.name, show_category_path(slug: category.slug) %></h2>
+    <h2><%=link_to locale_name(category), show_category_path(locale, slug: category.slug) %></h2>
   <% end %>
 <% end %>

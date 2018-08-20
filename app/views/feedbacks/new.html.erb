@@ -1,8 +1,8 @@
 <%= content_for :title do %>
-  New Feedback
+  <%= t('feedback.new') %>
 <% end %>
 
-<h1> New Feedback</h1>
+<h1><%= t('feedbacks.new') %></h1>
 
 <%= form_for @feedback do |f| %>
   <% if @feedback.errors.any? %>
@@ -13,26 +13,26 @@
     </ul>
   <% end %>
   <div class="form-group">
-    <%= f.text_field :name, class: "form-control", placeholder: 'Name' %>
+    <%= f.text_field :name, class: "form-control", placeholder: t('user_fields.name') %>
   </div>
   <div class="form-group">
-    <%= f.text_field :email, class: "form-control", placeholder: 'E-mail' %>
+    <%= f.text_field :email, class: "form-control", placeholder: t('user_fields.email') %>
   </div>
   <div class="form-group">
-    <%= f.text_field :phone, class: "form-control", placeholder: 'Phone' %>
+    <%= f.text_field :phone, class: "form-control", placeholder: t('user_fields.phone') %>
   </div>
   <div class="form-group">
-    <%= f.text_field :message, class: "form-control", placeholder: 'Message' %>
+    <%= f.text_field :message, class: "form-control", placeholder: t('user_fields.message') %>
   </div>
   <%= f.submit class: "btn btn-primary" %>
 <% end %>
 
 <table class="table table-bordered">
   <tr>
-    <td>Name</td>
-    <td>E-mail</td>
-    <td>Phone</td>
-    <td>Message</td>
+    <td><%= t('user_fields.name') %></td>
+    <td><%= t('user_fields.email') %></td>
+    <td><%= t('user_fields.phone') %></td>
+    <td><%= t('user_fields.message') %></td>
   </tr>
 
   <% @feedbacks.each do |feedback| %>

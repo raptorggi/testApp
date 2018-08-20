@@ -13,7 +13,7 @@ RSpec.describe ProductsController, type: :controller do
     end
   end
 
-  let(:category) { Category.create name: 'cat 1' }
+  let(:category) { create :category }
   let(:product) { create :product, category_id: category.id }
   let(:product2) { create :product, category_id: category.id }
 

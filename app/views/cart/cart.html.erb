@@ -1,23 +1,23 @@
 <%= content_for :title do %>
-  Корзина
+  <%= t('cart.title') %>
 <% end %>
 
-<h1> Корзина </h1>
+<h1><%= t('carts.cart')%></h1>
 
 <table class="table table-borderless table-hover">
   <thead>
     <tr>
       <th scope="col" width="5%">#</th>
-      <th scope="col" width="60%">Товар</th>
-      <th scope="col" width="15%">Цена</th>
-      <th scope="col" width="20%">Количество</th>
+      <th scope="col" width="60%"><%= t('carts.name') %></th>
+      <th scope="col" width="15%"><%= t('carts.price') %></th>
+      <th scope="col" width="20%"><%= t('carts.quantity') %></th>
     </tr>
   </thead>
   <tbody>
     <% @products.each_with_index do |product, i| %>
       <tr data-cookie-product=<%= @cookie_products[i][0] %>>
         <th class="cart-index"><%= i + 1 %></th>
-        <td><%=link_to product.name, show_product_path(product.category.slug, product.slug) %></td>
+        <td><%=link_to locale_name(product), show_product_path(product.category.slug, product.slug) %></td>
         <td data-product-price=<%= product.price %> data-cookie-product=<%= @cookie_products[i][0] %>>
           <%= product.price %>
         </td>
@@ -39,14 +39,10 @@
   </tbody>
 </table>
 <div class="row">
-  <div class="col-sm-10" align="right"><h4 id="order" >Итог: 0 </h4></div>
+  <div class="col-sm-10" align="right"><h4 id="order" data-text=<%= t('carts.total') %>><%= "#{t('carts.total')} 0" %></h4></div>
   <div class="col-sm-2">
     <% if @products_count != 0 %>
-      <%=link_to order_path do %>
-        <button type="button" class="btn btn-primary">
-          Оформить заказ
-        </button>
-      <% end %>  
+      <%=link_to t('buttons.order'), order_path(locale), class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>

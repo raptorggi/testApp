@@ -18,6 +18,8 @@ GEM
       rack-test (>= 0.6.3)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    actionpack-action_caching (1.2.0)
+      actionpack (>= 4.0.0, < 6)
     actionview (5.1.6)
       activesupport (= 5.1.6)
       builder (~> 3.1)
@@ -368,6 +370,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionpack-action_caching
   activeadmin
   bootstrap-sass (~> 3.3.6)
   byebug

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe OrdersController, type: :controller do
   let(:category) { create :category }
-  let(:product) { create :product,  name: 'product' }
+  let(:product) { create :product }
   let(:user) { create :user }
   let(:user_admin) { create :admin_user }
 
@@ -27,7 +27,7 @@ RSpec.describe OrdersController, type: :controller do
   describe '#create' do
     it 'redirect to confirmed page if order creation success' do
       post :create, params: { order: { address: 'testtest', order_products_attributes: { '0' => { product_id: product.id, count: 2 } } } }
-      expect(response).to redirect_to(confirmed_order_path)
+      expect(response).to redirect_to(confirmed_order_path('ru'))
     end
 
     it "render template 'order' if order creation failed" do

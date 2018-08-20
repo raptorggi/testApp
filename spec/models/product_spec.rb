@@ -10,7 +10,8 @@ RSpec.describe Product, type: :model do
   end
 
   describe 'presence' do
-    it { is_expected.to validate_presence_of :name }
+    it { is_expected.to validate_presence_of :name_ru }
+    it { is_expected.to validate_presence_of :name_en }
     it { is_expected.to validate_presence_of :quantity }
     it { is_expected.to validate_presence_of :reserved }
   end

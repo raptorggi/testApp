@@ -1,17 +1,7 @@
-<h2>Sign up</h2>
+<h2><%= t('.sign_up') %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.email_field :name, autofocus: true, autocomplete: "First name" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :second_name %><br />
-    <%= f.email_field :second_name, autofocus: true, autocomplete: "Second name" %>
-  </div>
 
   <div class="field">
     <%= f.label :email %><br />
@@ -19,14 +9,9 @@
   </div>
 
   <div class="field">
-    <%= f.label :phone %><br />
-    <%= f.email_field :phone, autofocus: true, autocomplete: "Phone number" %>
-  </div>
-
-  <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
@@ -37,7 +22,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit t('.sign_up') %>
   </div>
 <% end %>
 
