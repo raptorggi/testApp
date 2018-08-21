@@ -1,9 +1,11 @@
 class ProductsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
-  caches_action :index, :tag => 'products_index'#, :layout => false
-  caches_action :category, :tag => 'products_category'#, :layout => false
-  caches_action :show, :tag => 'products_show'#, :layout => false
+
+  caches_action :index, :tag => 'products_index'
+  caches_action :category, :tag => 'products_category'
+  caches_action :show, :tag => 'products_show'
+  
   cache_sweeper :products_sweeper, :only => [ :category, :show ]
   cache_sweeper :category_sweeper, :only => [ :category, :index ]
 
