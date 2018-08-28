@@ -6,6 +6,9 @@ git_source(:github) do |repo_name|
 end
 
 gem 'actionpack-action_caching'
+gem 'rails-observers'
+gem 'cashier', :git => 'https://github.com/forsaken1/cashier'
+gem 'redis-rails'
 gem 'devise'
 gem 'activeadmin'
 gem 'bootstrap-sass', '~> 3.3.6'

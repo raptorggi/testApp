@@ -12,10 +12,12 @@ module TestApp
     config.load_defaults 5.1
     config.i18n.available_locales = %i[en ru]
     config.i18n.default_locale = :ru
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.autoload_paths << Rails.root.join('lib')
+    config.autoload_paths << Rails.root.join('app', 'sweepers')
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
     config.action_mailer.default_url_options = { host: 'localhost:3000' }
 
