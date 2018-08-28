@@ -3,9 +3,6 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users, only: :omniauth_callbacks, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
-  root 'application#index'
-  get '/:locale' => 'application#set_locale'
-
   scope '(:locale)' do
     devise_for :users,
     skip: :omniauth_callbacks,
@@ -18,6 +15,8 @@ Rails.application.routes.draw do
       :sign_up => 'cmon_let_me_in',
       :profile => 'profile'}
     
+    root 'application#index'
+
     get 'about' => 'application#about'
     get '/' => 'application#index', as: :index
 

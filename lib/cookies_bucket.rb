@@ -25,7 +25,7 @@ class CookiesBucket
   end
 
   def get_products_from_cookies
-    (@cookies.select { |prod, _value| prod.include? COOKIE_PRODUCT_PREFIX }).sort
+    @cookies.select { |prod, _value| prod.include? COOKIE_PRODUCT_PREFIX }.sort
   end
 
   def get_products_and_count
@@ -43,8 +43,7 @@ class CookiesBucket
     products.each do |product|
       products_id.push product[0][COOKIE_PRODUCT_PREFIX.length..product[0].length - 1]
     end
-    products = Product.where id: products_id
-    products.order('id')
+    Product.where(id: products_id).order('id')
   end
 
   def clear

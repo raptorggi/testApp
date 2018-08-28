@@ -16,7 +16,7 @@ class CategorySweeper < ActionController::Caching::Sweeper
   private
 
   def expire_cache_for(record)
-    Cashier.expire 'products_index'
-    Cashier.expire 'products_category'
+    Cashier.expire 'categories'
+    Cashier.expire record.id
   end
 end
