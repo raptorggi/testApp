@@ -4,59 +4,53 @@ class CookiesBucket
   def initialize(cookies)
     @cookies = cookies
     @cookies[:token] = SecureRandom.uuid unless @cookies.key?('token')
+    @cookies[:products_quantity] = 0 unless @cookies.key?('products_quantity')
   end
 
-  def add_product_to_cookies(slug)
-    product = "#{COOKIE_PRODUCT_PREFIX}#{(Product.find_by slug: slug).id}"
-    @cookies[product] = if @cookies[product]
-                          @cookies[product].to_i + 1
-                        else
-                          1
-                        end
-    update_products_count
+  def add_product(id)
+    product = "#{COOKIE_PRODUCT_PREFIX}#{id}"
+    @cookies[product] = @cookies[product] ? @cookies[product].to_i + 1 : 1
+    update_products_quantity
   end
 
-  def update_products_count
-    @cookies[:products_count] = 0
+  def update_products_quantity
+    @cookies[:products_quantity] = 0
     products = @cookies.select { |prod, _value| prod.include? COOKIE_PRODUCT_PREFIX }
     products.each do |product|
-      @cookies[:products_count] += product[1].to_i
+      @cookies[:products_quantity] += product[1].to_i
     end
   end
 
-  def get_products_from_cookies
-    (@cookies.select { |prod, _value| prod.include? COOKIE_PRODUCT_PREFIX }).sort
+  def cookies
+    @cookies.select { |prod, _value| prod.include? COOKIE_PRODUCT_PREFIX }.sort
   end
 
-  def get_products_and_count
-    products = get_products
-    products_and_count = {}
+  def products_with_quantity
+    products_and_quantity = {}
     products.each do |product|
-      products_and_count[product] = @cookies["#{COOKIE_PRODUCT_PREFIX}#{product.id}"]
+      products_and_quantity[product] = @cookies["#{COOKIE_PRODUCT_PREFIX}#{product.id}"]
     end
-    products_and_count
+    products_and_quantity
   end
 
-  def get_products
-    products = get_products_from_cookies
+  def products
     products_id = []
-    products.each do |product|
+    cookies.each do |product|
       products_id.push product[0][COOKIE_PRODUCT_PREFIX.length..product[0].length - 1]
     end
-    products = Product.where id: products_id
-    products.order('id')
+    products = Product.where(id: products_id).order('id')
   end
 
   def clear
     @cookies.clear
-    @cookies[:products_count] = 0
+    @cookies[:products_quantity] = 0
   end
 
-  def get_products_count
-    @cookies[:products_count].to_i
+  def quantity
+    @cookies[:products_quantity].to_i
   end
 
-  def get_user_token
+  def user_token
     @cookies[:token]
   end
 end
