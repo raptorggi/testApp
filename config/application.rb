@@ -6,12 +6,23 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+
+
 module TestApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
     config.i18n.available_locales = %i[en ru]
     config.i18n.default_locale = :ru
+
+
+    config.filter_parameters << :password
+    # sentry 
+    Raven.configure do |config|
+      config.sanitize_fields = Rails.application.config.filter_parameters.map(&:to_s)
+      config.dsn = "#{ENV['SENTRY_DSN']}"
+      config.environments = %w[ development production ]
+    end
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
