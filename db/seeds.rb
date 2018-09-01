@@ -1,4 +1,4 @@
-if Rails.env.development?
+# if Rails.env.development?
   User.create(name: 'user', last_name: 'test', phone: '+70000000000', email: 'user@example.com', password: 'password', password_confirmation: 'password')
 
   AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
@@ -31,4 +31,4 @@ if Rails.env.development?
   product = category.products.create(name_ru: 'Huawei P20 128 ГБ синий', name_en: 'Huawei P20 128 ГБ blue', quantity: 0, reserved: 0, description: 'Смартфон Huawei P20 – оптимальный вариант для любителей фотосъемки, ведь он обладает основной двойной камерой на 12+20 и фронтальной на 24 Мп, так что делаете ли вы селфи или же запечатлеваете окружающие виды, вы получите снимки безупречного качества, за которые отвечают и оптическая стабилизация и сенсорная фокусировка. Кроме того, смартфон станет вашим надежным спутником в дальней дороге, поскольку обладает GPS и ГЛОНАСС, а также системой Android Pay, которая позволит применять бесконтактные технологии оплаты, что очень удобно.', price: 44_999)
   img = File.open(File.join(Rails.root, '/public/img/dev/products/hui_p20.jpg'))
   product.update image: img
-end
+# end

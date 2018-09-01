@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   devise_for :users, only: :omniauth_callbacks, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   root 'application#index'
-  get '/:locale' => 'application#set_locale'
 
   scope '(:locale)' do
     devise_for :users,
