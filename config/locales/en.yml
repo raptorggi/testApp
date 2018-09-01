@@ -37,6 +37,8 @@ en:
     category: 'Categories'
     cart: 'Cart'
     page: 'Pages'
+  welcome: "Welcome"
+  about: "About"
   feedbacks:
     new: 'Create feedback'
   categories:
@@ -46,7 +48,7 @@ en:
     quantity: 'Quantity:'
     buy: ' added to cart'
   carts:
-    title: 'Order Pages'
+    title: 'Order Page'
     cart: 'Cart'
     name: 'Product'
     price: 'Price'
