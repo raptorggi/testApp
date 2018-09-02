@@ -22,6 +22,8 @@ ru:
     category: 'Категории'
     cart: 'Корзина'
     page: 'Страницы'
+  welcome: "Добро пожаловать"
+  about: "О сайте"
   feedbacks:
     new: 'Создать отзыв'
   categories:
