@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem "sentry-raven"
 gem 'actionpack-action_caching'
 gem 'rails-observers'
 gem 'cashier', :git => 'https://github.com/forsaken1/cashier'
