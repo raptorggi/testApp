@@ -50,21 +50,21 @@ RSpec.describe ProductsController, type: :controller do
 
   describe '#buy' do
     it 'responds successfully' do
-      post :buy, params: { slug: product.slug }
+      post :buy, params: { id: product.id }
       expect(response).to be_success
     end
 
     it 'add product to cookies' do
-      post :buy, params: { slug: product.slug }
+      post :buy, params: { id: product.id }
       prod = "#{CookiesBucket::COOKIE_PRODUCT_PREFIX}#{product.id}"
       expect(cookies[prod]).to eq(1)
     end
 
     it 'have correct count products in cart' do
-      post :buy, params: { slug: product.slug }
-      post :buy, params: { slug: product.slug }
-      post :buy, params: { slug: product2.slug }
-      expect(cookies[:products_count]).to eq(3)
+      post :buy, params: { id: product.id }
+      post :buy, params: { id: product.id }
+      post :buy, params: { id: product2.id }
+      expect(cookies[:products_quantity]).to eq(3)
     end
   end
 end

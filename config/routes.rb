@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     get 'products' => 'products#index', as: :products_index
     get 'products/:slug' => 'products#category', as: :show_category
     get 'products/:category_slug/:slug' => 'products#show', as: :show_product 
-    post 'products/:slug/buy' => 'products#buy', as: :add_product_to_cart
+    post 'products/:id/buy' => 'products#buy', as: :add_product_to_cart
 
     get 'cart' => 'cart#cart', as: :show_cart
 

@@ -18,7 +18,7 @@
         <h5><%= t('products.sold') %></h5>
       <% else %>
         <h5><%= "#{t('products.quantity')}#{product.left}" %> </h5>
-        <%= button_tag t('buttons.buy'), data: { product_slug: product.slug, product_name: locale_name(product).to_s }, class: "btn btn-primary"%>
+        <%= button_tag t('buttons.buy'), data: { product_id: product.id, product_name: locale_name(product).to_s }, class: "btn btn-primary"%>
       <% end %>
     </div>
   </div>
