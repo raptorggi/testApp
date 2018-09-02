@@ -1,11 +1,11 @@
 services:
   - postgresql
 before_script:
+  - bundle install
   - psql -c 'create database testApp_test;' -U postgres
+  - bundle exec rails db:migrate RAILS_ENV=test
 language: ruby
 rvm:
   - 2.4.2
-script:
-  - bundle install
-  - bundle exec rails db:migrate RAILS_ENV=test
+script: 
   - bundle exec rspec
