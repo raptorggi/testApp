@@ -1,12 +1,6 @@
 class ProductsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
-  # caches_action :index, :tag => 'products_index'#, :layout => false
-  # caches_action :category, :tag => 'products_category'#, :layout => false
-  # caches_action :show, :tag => 'products_show'#, :layout => false
-  # cache_sweeper :products_sweeper, :only => [ :category, :show ]
-  # cache_sweeper :category_sweeper, :only => [ :category, :index ]
-
   def index
     @categories = Category.root
   end
@@ -28,6 +22,6 @@ class ProductsController < ApplicationController
   end
 
   def buy
-    CookiesBucket.new(cookies).add_product_to_cookies(params[:slug])
+    CookiesBucket.new(cookies).add_product(params[:id])
   end
 end
