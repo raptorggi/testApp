@@ -2,6 +2,9 @@
   <%= t('categories.title') %>
 <% end %>
 
+<h3> <%= t('products.search.title') %> </h3>
+<%= render 'products/products_search' %>
+
 <h1><%= t('categories.title') %><h1>
 
 <% @categories.each do |cat| %>

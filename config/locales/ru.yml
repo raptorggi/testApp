@@ -32,6 +32,13 @@ ru:
     sold: 'нет в наличии'
     quantity: 'В наличии:'
     buy: ' добавлен'
+    search:
+      search: 'Поиск'
+      title: 'Поиск товара'
+      placeholder: 'Название...'
+      products: 'Товары'
+      categories: 'Категории'
+      result: 'Результат поиска'
   carts:
     title: 'Страница заказа'
     cart: 'Корзина'

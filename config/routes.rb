@@ -26,8 +26,9 @@ Rails.application.routes.draw do
     get 'page/:slug' => 'page#show', as: :show_page
 
     get 'products' => 'products#index', as: :products_index
+    get 'products/search' => 'products#search', as: :search_product
     get 'products/:slug' => 'products#category', as: :show_category
-    get 'products/:category_slug/:slug' => 'products#show', as: :show_product 
+    get 'products/:category_slug/:slug' => 'products#show', as: :show_product
     post 'products/:id/buy' => 'products#buy', as: :add_product_to_cart
 
     get 'cart' => 'cart#cart', as: :show_cart

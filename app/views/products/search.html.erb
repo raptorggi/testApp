@@ -1,0 +1,23 @@
+<%= content_for :title do %>
+  <%= t('products.search.result') %>
+<% end %>
+
+<h3><%= t('products.search.result') %></h3>
+
+<% if @categories.any? %>
+  <h4> <%= t('products.search.categories') %> </h4>
+  <% @categories.each do |category| %>
+    <div>
+      <%= link_to locale_name(category), show_category_path(locale: locale, slug: category.slug) %>
+    </div>
+  <% end %>
+<% end %>
+
+<% if @products.any? %>
+  <h4> <%= t('products.search.products') %> </h4>
+  <% @products.each do |product| %>
+    <div>
+      <%= link_to locale_name(product), show_product_path(locale: locale, category_slug: product.category.slug, slug: product.slug) %>
+    </div>
+  <% end %>
+<% end %>

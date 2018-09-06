@@ -21,7 +21,19 @@ class ProductsController < ApplicationController
     @products = Product.where category_id: @category.id
   end
 
+  def search
+    /[а-я]/.match(params[:name]) ? lang = 'ru' : lang = 'en'
+    @categories = Category.where("name_#{lang} ILIKE ? ", "%#{params[:name]}%")
+    @products = Product.where("name_#{lang} ILIKE ? ", "%#{params[:name]}%")
+  end
+
   def buy
     CookiesBucket.new(cookies).add_product(params[:id])
+  end
+
+  private
+
+  def search_params
+    params.require(:search).permit(:name)
   end
 end
