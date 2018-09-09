@@ -67,4 +67,26 @@ RSpec.describe ProductsController, type: :controller do
       expect(cookies[:products_quantity]).to eq(3)
     end
   end
+
+  let(:category_search) { create :category, name_ru: 'product category', name_en: 'product category' }
+  let(:product_search) { create :product, category_id: category_search.id }
+
+  describe '#search' do
+    it 'responds successfully' do
+      get :search
+      expect(response).to be_success
+    end
+
+    it 'returns requested product' do
+      product_search
+      get :search, params: {name: 'prod'}
+      expect(assigns(:products)[0].id).to eq(product_search.id)
+    end
+
+    it 'returns requested category' do
+      category_search
+      get :search, params: {name: 'prod'}
+      expect(assigns(:categories)[0].id).to eq(category_search.id)
+    end 
+  end
 end

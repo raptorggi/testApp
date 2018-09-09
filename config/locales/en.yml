@@ -47,6 +47,13 @@ en:
     sold: 'out of stock'
     quantity: 'Quantity:'
     buy: ' added to cart'
+    search:
+      search: 'Search'
+      title: 'Product search'
+      placeholder: 'name...'
+      products: 'Products'
+      categories: 'Categories'
+      result: 'Search result'
   carts:
     title: 'Order Page'
     cart: 'Cart'

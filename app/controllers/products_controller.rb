@@ -21,7 +21,18 @@ class ProductsController < ApplicationController
     @products = Product.where category_id: @category.id
   end
 
+  def search
+    @categories = Category.search_category(params[:name]) 
+    @products = Product.search_product(params[:name])
+  end
+
   def buy
     CookiesBucket.new(cookies).add_product(params[:id])
+  end
+
+  private
+
+  def search_params
+    params.require(:search).permit(:name)
   end
 end
