@@ -17,6 +17,6 @@ class Product < ApplicationRecord
 
   scope :search_product, -> (name) {
     /[а-я]/.match(name) ? lang = 'ru' : lang = 'en'
-    return Product.where("name_#{lang} ILIKE ? ", "%#{name}%")
+    Product.where("name_#{lang} ILIKE ? ", "%#{name}%")
   }
 end
