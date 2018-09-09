@@ -10,6 +10,6 @@ class Category < ApplicationRecord
 
   scope :search_category, -> (name) {
     /[а-я]/.match(name) ? lang = 'ru' : lang = 'en'
-    categories = Category.where("name_#{lang} ILIKE ? ", "%#{name}%")
+    return Category.where("name_#{lang} ILIKE ? ", "%#{name}%")
   }
 end
