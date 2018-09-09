@@ -14,4 +14,9 @@ class Product < ApplicationRecord
   def left
     quantity - reserved
   end
+
+  scope :search_product, -> (name) {
+    /[а-я]/.match(name) ? lang = 'ru' : lang = 'en'
+    products = Product.where("name_#{lang} ILIKE ? ", "%#{name}%")
+  }
 end

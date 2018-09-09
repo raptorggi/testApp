@@ -7,4 +7,9 @@ class Category < ApplicationRecord
   has_many :products, dependent: :destroy
 
   scope :root, -> { where parent_id: nil }
+
+  scope :search_category, -> (name) {
+    /[а-я]/.match(name) ? lang = 'ru' : lang = 'en'
+    categories = Category.where("name_#{lang} ILIKE ? ", "%#{name}%")
+  }
 end

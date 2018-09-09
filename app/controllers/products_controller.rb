@@ -22,9 +22,8 @@ class ProductsController < ApplicationController
   end
 
   def search
-    /[а-я]/.match(params[:name]) ? lang = 'ru' : lang = 'en'
-    @categories = Category.where("name_#{lang} ILIKE ? ", "%#{params[:name]}%")
-    @products = Product.where("name_#{lang} ILIKE ? ", "%#{params[:name]}%")
+    @categories = Category.search_category(params[:name]) 
+    @products = Product.search_product(params[:name])
   end
 
   def buy

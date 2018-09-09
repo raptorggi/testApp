@@ -24,7 +24,7 @@
             <li><%= link_to t('navbar.feedback'), new_feedback_path(locale) %></li>
             <li><%= link_to t('navbar.category'), products_index_path(locale) %></li>
             <%= render 'layouts/menu' %>
-            <% if !current_page?(products_index_path(params[:locale])) %>
+            <% unless current_page?(products_index_path(params[:locale])) %>
               <li><%= render 'products/products_search' %></li>
             <% end %>
           </ul>
