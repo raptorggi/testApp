@@ -1,26 +1,18 @@
-# README
+# testApp
 
 [![Build Status](https://travis-ci.com/raptorggi/testApp.svg?branch=master)](https://travis-ci.com/raptorggi/testApp)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Simple app. Was created to study RoR and React.
 
-Things you may want to cover:
+# Install
+```
+git clone https://github.com/raptorggi/testApp.git
+bundle install
+rake db:create db:migrate
+rails s
+```
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Contributors
+Konstantin Denisov, e-mail: raptorggi@gmail.com
+# Lisence
+MIT License. Copyright 2020 Konstantin Denisov
