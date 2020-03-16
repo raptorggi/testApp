@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem "bootsnap"
 gem "sentry-raven"
 gem 'actionpack-action_caching'
 gem 'rails-observers'
@@ -23,7 +24,7 @@ gem 'money-rails', '~>1'
 gem 'paperclip', '~> 6.0.0'
 gem 'pg'
 gem 'puma', '~> 3.7'
-gem 'rails', '~> 5.1.1'
+gem 'rails', '~> 5.2.3'
 gem 'rails-ujs', '~> 0.1.0'
 gem 'russian', '~> 0.6.0'
 gem 'sass-rails', '~> 5.0'
