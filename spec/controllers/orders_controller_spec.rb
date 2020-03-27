@@ -15,7 +15,7 @@ RSpec.describe OrdersController, type: :controller do
   describe '#order' do
     it 'responds successfully' do
       get :order
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it 'render template' do
@@ -56,7 +56,7 @@ RSpec.describe OrdersController, type: :controller do
   describe '#confirmed' do
     it 'responds successfully' do
       get :confirmed
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it 'render template' do

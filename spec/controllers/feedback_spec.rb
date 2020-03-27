@@ -4,7 +4,7 @@ describe FeedbacksController, type: :controller do
   describe 'new' do
     it 'response successfully' do
       get :new
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it 'feedback be a new' do

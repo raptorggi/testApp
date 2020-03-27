@@ -33,3 +33,11 @@ spec/examples.txt
 .idea
 
 dump.rdb
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+
+/config/master.key

@@ -11,6 +11,8 @@ require 'capybara/rails'
 require 'database_cleaner'
 require 'capybara/poltergeist'
 
+require 'webdrivers/chromedriver'
+
 Capybara.javascript_driver = :poltergeist
 
 # Requires supporting ruby files with custom matchers and macros, etc, in

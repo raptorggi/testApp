@@ -16,7 +16,7 @@ Rails.application.configure do
 
   # Enable/disable caching. By default caching is disabled.
   if Rails.root.join('tmp', 'caching-dev.txt').exist?
-    config.action_controller.perform_caching = true
+    config.action_controller.perform_caching = false
     # config.cache_store = :memory_store
     config.cache_store = :redis_store, "redis://localhost:6379/1/ns"
     config.cashier.adapter = :cache_store
@@ -26,6 +26,8 @@ Rails.application.configure do
   else
     config.action_controller.perform_caching = false
   end
+
+  config.active_record.cache_versioning = false # TODO
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false

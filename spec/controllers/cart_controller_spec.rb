@@ -14,7 +14,7 @@ RSpec.describe CartController, type: :controller do
   describe '#cart' do
     it 'responds successfully' do
       get :cart
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it 'render template' do
