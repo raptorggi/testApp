@@ -5,6 +5,6 @@ before_script:
   - bundle exec rails db:create db:migrate RAILS_ENV=test
 language: ruby
 rvm:
-  - 2.4.2
+  - 2.6.5
 script: 
   - bundle exec rspec
