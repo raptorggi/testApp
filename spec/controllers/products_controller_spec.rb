@@ -4,7 +4,7 @@ RSpec.describe ProductsController, type: :controller do
   describe '#index' do
     it 'responds successfully' do
       get :index
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it 'render template' do
@@ -20,7 +20,7 @@ RSpec.describe ProductsController, type: :controller do
   describe '#show' do
     it 'responds successfully' do
       get :show, params: { category_slug: category.slug, slug: product.slug }
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it 'returns requested product' do
@@ -32,7 +32,7 @@ RSpec.describe ProductsController, type: :controller do
   describe '#category' do
     it 'responds successfully' do
       get :category, params: { slug: category.slug }
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it 'returns requested category' do
@@ -44,14 +44,14 @@ RSpec.describe ProductsController, type: :controller do
   describe '#show pdf' do
     it 'responds successfully' do
       get :show, as: 'pdf', params: { category_slug: category.slug, slug: product.slug }
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
   describe '#buy' do
     it 'responds successfully' do
       post :buy, params: { id: product.id }
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it 'add product to cookies' do
@@ -74,7 +74,7 @@ RSpec.describe ProductsController, type: :controller do
   describe '#search' do
     it 'responds successfully' do
       get :search
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it 'returns requested product' do
